@@ -1,0 +1,6 @@
++ Loggin
+    *Funciona pero hay que revisarlo que no tiene pinta de ser lo mejor
+    * 11-7-2018 --> Creo que el loggin funciona muy bien, lo unico que estara mal sera la forma
+                    de pillar los datos de la base de datos y el routing con expressjs, y por 
+                    supuesto la poca seguridad que hay.
++ Hacer app.route
