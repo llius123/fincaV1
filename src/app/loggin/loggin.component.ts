@@ -1,6 +1,9 @@
 import { LogginServices } from './../app.services';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from "@angular/forms";
+import { ActivatedRoute, Router } from '@angular/router';
+import { Response } from '@angular/http';
+import { isEmpty } from 'rxjs/operators';
 
 @Component({
   selector: "app-loggin",
@@ -13,13 +16,27 @@ export class LogginComponent implements OnInit {
   userForm: string;
   passForm: string;
 
-  constructor(private logginServices: LogginServices) {}
+  constructor(private logginServices: LogginServices,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit() {
     this.logginData = new FormGroup({
       user: new FormControl(null),
       pass: new FormControl(null)
     });
+  }
+  submit2(){
+    this.logginServices
+    .loggin('test', 'test')
+    .subscribe(
+      (result: Response) => {
+        this.logginValidator(result.json());
+      }
+    )
+    this.loggValidator = true;
+    this.router.navigate(["personal_panel"]);
+    console.log('default sesion');
   }
   submit() {
     this.userForm = this.logginData.get("user").value;
@@ -28,9 +45,8 @@ export class LogginComponent implements OnInit {
     this.logginServices
       .loggin(this.logginData.value.user, this.logginData.value.pass)
       .subscribe(
-        result => {
-          const data = JSON.parse(result._body);
-          this.logginValidator(data);
+        (result: Response) => {
+          this.logginValidator(result.json());
         },
         error => {
           console.log(error);
@@ -39,7 +55,10 @@ export class LogginComponent implements OnInit {
   }
 
   logginValidator(data: JSON) {
-    if (data.length > 0) {
+    const dataString = JSON.stringify(data);
+    const dataJSON = JSON.parse(dataString);
+    
+    if (dataJSON.length > 0) {
       if (
         data[0].usuario === this.userForm &&
         data[0].password === this.passForm

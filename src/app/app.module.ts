@@ -9,16 +9,26 @@ import { LogginServices } from "./app.services";
 import { LogginComponent } from './loggin/loggin.component';
 import { HeaderComponent } from './personal-panel/header/header.component';
 import { PersonalPanelComponent } from './personal-panel/personal-panel.component';
+import { AppRoute } from "./app.route";
+import { UsersComponent } from './personal-panel/users/users.component';
+import { SqlService } from "./personal-panel/extra/sql.service";
 
 @NgModule({
-  declarations: [AppComponent, LogginComponent, HeaderComponent, PersonalPanelComponent],
+  declarations: [
+    AppComponent, 
+    LogginComponent, 
+    HeaderComponent, 
+    PersonalPanelComponent, 
+    UsersComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    AppRoute
   ],
-  providers: [LogginServices],
+  providers: [LogginServices, SqlService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,4 +1,3 @@
-
 const http = require("http");
 const express = require("express");
 const app = express();
@@ -34,12 +33,19 @@ app.get("/loggin/:usu&:pass", function(req, res) {
     "select * from usuario where nombre=? and password=?",
     [req.params.usu, req.params.pass],
     function(error, results) {
-		const dataString = JSON.stringify(results);
-		//Transformo el array String de JSON en un array JSON
-		//const dataJson = JSON.parse(dataString);
+      const dataString = JSON.stringify(results);
+      //Transformo el array String de JSON en un array JSON
+      //const dataJson = JSON.parse(dataString);
       res.end(dataString);
     }
   );
+});
+
+app.get("/allUsers", function(req, res) {
+  connection.query("select id, nombre, telefono, puerta, tipo_id from usuario", function(error, results) {
+    const dataString = JSON.stringify(results);
+    res.end(dataString);
+  });
 });
 
 // //rest api to get all customers
