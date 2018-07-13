@@ -1,9 +1,10 @@
-import { LogginServices } from './../app.services';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
-import { ActivatedRoute, Router } from '@angular/router';
-import { Response } from '@angular/http';
-import { isEmpty } from 'rxjs/operators';
+import { ActivatedRoute, Router } from "@angular/router";
+import { Response } from "@angular/http";
+import { isEmpty } from "rxjs/operators";
+import { SqlService } from "../personal-panel/extra/sql.service";
+import { LoggedService } from "../personal-panel/extra/logged.service";
 
 @Component({
   selector: "app-loggin",
@@ -11,14 +12,19 @@ import { isEmpty } from 'rxjs/operators';
   styleUrls: ["./loggin.component.css"]
 })
 export class LogginComponent implements OnInit {
+  autologgin = "test";
+
   logginData: FormGroup;
   loggValidator = false;
   userForm: string;
   passForm: string;
 
-  constructor(private logginServices: LogginServices,
-              private route: ActivatedRoute,
-              private router: Router) {}
+  constructor(
+    private sqlService: SqlService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private loggedData: LoggedService
+  ) {}
 
   ngOnInit() {
     this.logginData = new FormGroup({
@@ -26,44 +32,45 @@ export class LogginComponent implements OnInit {
       pass: new FormControl(null)
     });
   }
-  submit2(){
-    this.logginServices
-    .loggin('test', 'test')
-    .subscribe(
+  submit() {
+    // this.userForm = this.logginData.get("user").value;
+    // this.passForm = this.logginData.get("pass").value;
+    // this.sqlService
+    //   .loggin(this.logginData.value.user, this.logginData.value.pass)
+    //   .subscribe(
+    //     (result: Response) => {
+    //       this.logginValidator(result.json());
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
+    //AUTOLOGIN, QUE ME CANSO DE ESCRIBIR EL USER Y LA PASS TODO EL RATO
+    this.userForm = this.autologgin;
+    this.passForm = this.autologgin;
+    this.sqlService.loggin("test", "test").subscribe(
       (result: Response) => {
         this.logginValidator(result.json());
+        console.log(result.json());
+      },
+      error => {
+        console.log(error);
       }
-    )
-    this.loggValidator = true;
-    this.router.navigate(["personal_panel"]);
-    console.log('default sesion');
-  }
-  submit() {
-    this.userForm = this.logginData.get("user").value;
-    this.passForm = this.logginData.get("pass").value;
-
-    this.logginServices
-      .loggin(this.logginData.value.user, this.logginData.value.pass)
-      .subscribe(
-        (result: Response) => {
-          this.logginValidator(result.json());
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    );
   }
 
   logginValidator(data: JSON) {
     const dataString = JSON.stringify(data);
     const dataJSON = JSON.parse(dataString);
-    
+
     if (dataJSON.length > 0) {
       if (
         data[0].usuario === this.userForm &&
         data[0].password === this.passForm
       ) {
         this.loggValidator = false;
+        this.loggedData.saveData(dataJSON);
+        this.router.navigate(["personal_panel"]);
       } else {
         this.loggValidator = true;
       }

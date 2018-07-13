@@ -3,11 +3,11 @@
     <form [formGroup]="logginData" (ngSubmit)="submit()">
       <div class="form-group">
         <label for="exampleInputEmail1">Username</label>
-        <input formControlName="user" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <input value="{{autologgin}}" formControlName="user" type="text" class="form-control">
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
-        <input formControlName="pass" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <input value="{{autologgin}}" formControlName="pass" type="password" class="form-control">
       </div>
       <div class="form-group">
         <div class="alert alert-danger" role="alert" *ngIf="loggValidator">
@@ -15,9 +15,6 @@
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <form (ngSubmit)="submit2()">
-      <button type="submit" class="btn btn-primary">TEST</button>
     </form>
   </div>
 </div>

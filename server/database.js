@@ -28,7 +28,7 @@ app.get("/", function(req, res) {
   res.send("Finca API");
 });
 
-app.get("/loggin/:usu&:pass", function(req, res) {
+app.get("/loggin/:usu/:pass", function(req, res) {
   connection.query(
     "select * from usuario where nombre=? and password=?",
     [req.params.usu, req.params.pass],
@@ -46,6 +46,17 @@ app.get("/allUsers", function(req, res) {
     const dataString = JSON.stringify(results);
     res.end(dataString);
   });
+});
+
+app.get("/type/:number", function (req, res) {
+  connection.query(
+    "select titulo from tipo where id=?",
+    [req.params.number],
+    function(error, result) {
+      const dataString = JSON.stringify(result);
+      res.end(dataString);
+    }
+  );
 });
 
 // //rest api to get all customers

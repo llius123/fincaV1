@@ -5,13 +5,13 @@ import { HttpModule } from "@angular/http";
 
 
 import { AppComponent } from './app.component';
-import { LogginServices } from "./app.services";
 import { LogginComponent } from './loggin/loggin.component';
 import { HeaderComponent } from './personal-panel/header/header.component';
 import { PersonalPanelComponent } from './personal-panel/personal-panel.component';
 import { AppRoute } from "./app.route";
 import { UsersComponent } from './personal-panel/users/users.component';
 import { SqlService } from "./personal-panel/extra/sql.service";
+import { LoggedService } from "./personal-panel/extra/logged.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { SqlService } from "./personal-panel/extra/sql.service";
     HttpModule,
     AppRoute
   ],
-  providers: [LogginServices, SqlService],
+  providers: [SqlService, LoggedService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

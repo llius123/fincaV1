@@ -1,6 +1,26 @@
-+ Loggin
-    *Funciona pero hay que revisarlo que no tiene pinta de ser lo mejor
+Trabajo hecho     --> *
+Trabajo sin hacer --> +
+
+-- AUTOLOGIN ACTIVADO ASI QUE SIEMPRE SE LOGEARA CON TEST TEST --
+
+--------------------------------------------------------------------------------------------------------
++ Hacer la parte del usuario
+    * Cargar los datos del usuario en su input (13-7-2018) 
+    + Añadir el boton editar datos 
+        + Boton actualizar datos
+        + Boton cancelar edicion datos
+
+* (13-7-2018) Hacer un diagrama con la estructura que quiero(hacer un dibujo/diagrama 
+donde este toda la estructura de la pagina, porque estoy dando tumbos sin rumbo fijo)
+    * Añadido imagenes de la estructura de la pagina web y de la base de datos
+
+* Hacer app.route
+    * Archivo app.route.ts arreglado con sus childs y funcionando perfectamente
+    + Ir actualizando cuando haga falta
+
+* Loggin
+    * Funciona pero hay que revisarlo que no tiene pinta de ser lo mejor
     * 11-7-2018 --> Creo que el loggin funciona muy bien, lo unico que estara mal sera la forma
                     de pillar los datos de la base de datos y el routing con expressjs, y por 
                     supuesto la poca seguridad que hay.
-+ Hacer app.route
+
