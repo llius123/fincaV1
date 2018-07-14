@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12" class="mx-auto" style="margin-top: 50px;">
-    <form [formGroup]="dataUser" (ngSubmit)="submit()">
+    <form [formGroup]="dataUser">
       <div class="form-group">
         <label>Nombre:</label>
         <input formControlName="nombre" type="text" class="form-control" [readonly]="readOnly">
@@ -8,6 +8,10 @@
       <div class="form-group">
         <label>Telefono</label>
         <input formControlName="telefono" type="text" class="form-control" [readonly]="readOnly">
+      </div>
+      <div class="form-group">
+        <label>Puerta</label>
+        <input formControlName="puerta" type="text" class="form-control" [readonly]="readOnly">
       </div>
       <div class="form-group">
         <label>Usuario</label>
@@ -22,8 +26,8 @@
           <strong>Error</strong> Usuario o contraseña erroneos.
         </div>
       </div>
-      <button type="submit" class="btn btn-success" *ngIf="modeEditable">Submit</button>
-      <button type="button" class="btn btn-danger" *ngIf="modeEditable" (click)="reloadPage()">Cancel</button>
+      <button type="button" class="btn btn-success" *ngIf="modeEditable" (click)="updateData()">Guardar</button>
+      <button type="button" class="btn btn-danger" *ngIf="modeEditable" (click)="cancelButton()">Cancelar</button>
       <button type="button" class="btn btn-primary" *ngIf="!modeEditable" (click)="editable()">Editar Datos</button>
     </form>
   </div>

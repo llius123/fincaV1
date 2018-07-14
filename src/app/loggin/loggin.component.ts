@@ -12,8 +12,6 @@ import { LoggedService } from "../personal-panel/extra/logged.service";
   styleUrls: ["./loggin.component.css"]
 })
 export class LogginComponent implements OnInit {
-  autologgin = "test";
-
   logginData: FormGroup;
   loggValidator = false;
   userForm: string;
@@ -46,12 +44,12 @@ export class LogginComponent implements OnInit {
     //     }
     //   );
     //AUTOLOGIN, QUE ME CANSO DE ESCRIBIR EL USER Y LA PASS TODO EL RATO
-    this.userForm = this.autologgin;
-    this.passForm = this.autologgin;
+    const autologgin = "test";
+    this.userForm = autologgin;
+    this.passForm = autologgin;
     this.sqlService.loggin("test", "test").subscribe(
       (result: Response) => {
         this.logginValidator(result.json());
-        console.log(result.json());
       },
       error => {
         console.log(error);

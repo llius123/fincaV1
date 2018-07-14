@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoggedService } from './extra/logged.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personal-panel',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonalPanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loggedService: LoggedService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.loggedService.loggedValidator();
   }
 
 }

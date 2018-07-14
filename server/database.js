@@ -4,10 +4,13 @@ const app = express();
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const connection = require("./server");
+const cors = require("cors");
 
 connection.connect(function(err) {
   if (err) throw err;
-  console.log("Conectado a Finca --> localhost:3000");
+  console.log(
+    "Conectado a Finca --> localhost:3000 || Cors enabled, mas info en README"
+  );
 });
 //end mysql connection
 
@@ -21,8 +24,14 @@ connection.connect(function(err) {
 // );
 //end body-parser configuration
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 //create app server
 const server = app.listen(3000);
+
+//PAra activar el cors en toda la api
+app.use(cors());
 
 app.get("/", function(req, res) {
   res.send("Finca API");
@@ -42,13 +51,16 @@ app.get("/loggin/:usu/:pass", function(req, res) {
 });
 
 app.get("/allUsers", function(req, res) {
-  connection.query("select id, nombre, telefono, puerta, tipo_id from usuario", function(error, results) {
-    const dataString = JSON.stringify(results);
-    res.end(dataString);
-  });
+  connection.query(
+    "select id, nombre, telefono, puerta, tipo_id, usuario, password from usuario",
+    function(error, results) {
+      const dataString = JSON.stringify(results);
+      res.end(dataString);
+    }
+  );
 });
 
-app.get("/type/:number", function (req, res) {
+app.get("/type/:number", function(req, res) {
   connection.query(
     "select titulo from tipo where id=?",
     [req.params.number],
@@ -58,6 +70,87 @@ app.get("/type/:number", function (req, res) {
     }
   );
 });
+
+app.get("/test/:id&:name", function(req, res) {
+  connection.query(
+    "select * from usuario where id=? and nombre=?",
+    [req.params.id, req.params.name],
+    function(error, result) {
+      const data = JSON.stringify(result);
+      res.end(data);
+    }
+  );
+});
+
+app.post("/newUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(
+  req,
+  res
+) {
+  connection.query(
+    "insert into Usuario(id,nombre,telefono,puerta,tipo_id,usuario,password) values(?,?,?,?,?,?,?)",
+    [
+      req.params.id,
+      req.params.name,
+      req.params.phone,
+      req.params.door,
+      req.params.type_id,
+      req.params.user,
+      req.params.pas
+    ]
+  );
+});
+
+app.put("/updateUser/:name&:phone&:door&:user&:pas&:id", function(
+  req,
+  res
+) {
+  connection.query(
+    "update usuario set nombre = ?, telefono = ?, puerta = ?, usuario = ?, password = ? where id = ?",
+    [
+      req.params.name,
+      req.params.phone,
+      req.params.door,
+      req.params.user,
+      req.params.pas,
+      req.params.id
+    ],
+    function(error, results, fields) {
+      (error) => {
+        console.log(error)
+      }
+      (results) => {
+        console.log(results)
+      }
+      (fields) => {
+        console.log(fields)
+      }
+      res.end(JSON.stringify(results));
+    }
+  );
+});
+
+// app.put("/updateUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(req,res) {
+//   connection.query(
+//     "update Usuario where id = ? and nombre = ? and telefono = ? and puerta = ? and tipo_id = ? and usuario = ? and password = ? ",
+//         [
+//       req.params.id,
+//       req.params.name,
+//       req.params.phone,
+//       req.params.door,
+//       req.params.type_id,
+//       req.params.user,
+//       req.params.pas
+//     ],
+//     function(error, results){
+//       console.log(error);
+//     }
+//   );
+// });
+// app.post("/updateUser/:id/:name/:phone/:type_id/:user/:pas", function (req, res){
+// connection.query(
+//   "insert into Usuario(id,nombre,telefono,tipo_id,usuario,password) values(?,?,?,?,?,?)"
+// )
+// })
 
 // //rest api to get all customers
 // app.get('/test', function (req, res) {

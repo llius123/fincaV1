@@ -3,15 +3,35 @@ Trabajo sin hacer --> +
 
 -- AUTOLOGIN ACTIVADO ASI QUE SIEMPRE SE LOGEARA CON TEST TEST --
 
+mirar chartjs 
+
 --------------------------------------------------------------------------------------------------------
 + Hacer la parte del usuario
+    + Cuando se actualicen datos los input se tienen que actualizar, y el
+    objeto general que uso yo tambien se tiene que actualizar
     * Cargar los datos del usuario en su input (13-7-2018) 
-    + Añadir el boton editar datos 
-        + Boton actualizar datos
-        + Boton cancelar edicion datos
+    * Añadir el boton editar datos (14-7-2018)
+        * Boton actualizar datos (14-7-2018)
+        * Boton cancelar edicion datos (14-7-2018)
 
-* (13-7-2018) Hacer un diagrama con la estructura que quiero(hacer un dibujo/diagrama 
-donde este toda la estructura de la pagina, porque estoy dando tumbos sin rumbo fijo)
+* Rehacer las rutas de database.js usando el operador '&' que no se porque insomnia no lo detecta pero expressjs
+si que utiliza esta propiedad, asi que a utilizarla y no usar tanto '/'
+Hacer ctrl + f y poner & y buscar toda la info/ejemplos que hay en la api oficial:
+http://expressjs.com/es/4x/api.html
+Resultado: He acabado usando postman y con la concatenacion de objetos & y a tomar por culo insomnia
+
+* Añadido un metodo de verifica que te hayas loggeado, si no te has logeado y has puesto la url 
+directamente te manda para loggin (14-7-2018) 
+loggedService.loggedValidator()
+
+* Metodos de update/create nuevos usuarios añadidos al backend (14-7-2018)
+
+* Añadido el paquete npm cors que me permite no usar extensiones que sirven para poder crear/acceder
+ a mi propia api desde el mismo ordenador,vamos que ahora puedo hacer lo mismo sin usar una extensione
+ de chrome +info: https://www.npmjs.com/package/cors (13-7-2018)
+
+* Hacer un diagrama con la estructura que quiero(hacer un dibujo/diagrama 
+  donde este toda la estructura de la pagina, porque estoy dando tumbos sin rumbo fijo)(13-7-2018)
     * Añadido imagenes de la estructura de la pagina web y de la base de datos
 
 * Hacer app.route
