@@ -1,9 +1,11 @@
 import { LoggedService } from "./../extra/logged.service";
 import { Response } from "@angular/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { SqlService } from "../extra/sql.service";
 
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Subscription } from "rxjs";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-users",
@@ -14,10 +16,14 @@ export class UsersComponent implements OnInit {
   dataUser: FormGroup;
   readOnly = true;
   modeEditable = false;
+  data;
+
+  test: any;
 
   constructor(
     private sqlServices: SqlService,
-    private loggedService: LoggedService
+    private loggedService: LoggedService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -28,17 +34,19 @@ export class UsersComponent implements OnInit {
       usuario: new FormControl(null),
       password: new FormControl(null)
     });
-    this.getUser();
+    this.getUser(true);
   }
 
-  getUser() {
-    this.dataUser.patchValue({
-      nombre: this.loggedService.getData().nombre,
-      telefono: this.loggedService.getData().telefono,
-      puerta: this.loggedService.getData().puerta,
-      password: this.loggedService.getData().password,
-      usuario: this.loggedService.getData().usuario
-    });
+  getUser(boolean: boolean) {
+    if (boolean === true) {
+      this.dataUser.patchValue({
+        nombre: this.loggedService.getData().nombre,
+        telefono: this.loggedService.getData().telefono,
+        puerta: this.loggedService.getData().puerta,
+        password: this.loggedService.getData().password,
+        usuario: this.loggedService.getData().usuario
+      });
+    }
   }
   //Al principio los datos no se pueden editar, pulsando el boton editar los label
   //pasaran a ser editables y a pareceran 2 botones mas
@@ -48,7 +56,7 @@ export class UsersComponent implements OnInit {
   }
 
   updateData() {
-    const data = {
+    this.data = {
       id: this.loggedService.getData().id,
       nombre: this.dataUser.get("nombre").value,
       telefono: this.dataUser.get("telefono").value,
@@ -56,18 +64,19 @@ export class UsersComponent implements OnInit {
       usuario: this.dataUser.get("usuario").value,
       pass: this.dataUser.get("password").value
     };
-    this.sqlServices.updateUser(data).subscribe();
-    this.sqlServices
-      .loggin(data.usuario, data.pass)
-      .subscribe((result: Response) => {
-        this.loggedService.updateDataObject(result.json());
-      });
-    this.getUser();
+    this.sqlServices.updateUser(this.data).subscribe((result: Response) => {
+      this.sqlServices
+        .loggin(this.data.usuario, this.data.pass)
+        .subscribe((result: Response) => {
+          this.loggedService.updateDataObject(result.json());
+        });
+    });
+    this.cancelButton();
   }
 
   cancelButton() {
-    this.getUser();
     this.readOnly = true;
     this.modeEditable = false;
+    this.getUser(false);
   }
 }

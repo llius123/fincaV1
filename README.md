@@ -17,7 +17,8 @@ o tenia que utilizar extensiones para que funcionara.
 ·Body-parser(npm)<br />
 
 <br />
-·Insomnia(para testear mi api)
+Postam(antes usaba insomnia pero hay veces que con determinados caracteres no funciona asi 
+que he decidido dejar de usar insomnia por Postman)
 <br />
 ·DIA(Para hacer diagramas UML y diagramas de bases de datos)
 <br />

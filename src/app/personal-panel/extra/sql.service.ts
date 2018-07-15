@@ -31,6 +31,6 @@ export class SqlService {
   //Updateo los datos del usuario
   updateUser(user: any){
     const url = this.base + "/updateUser/" + user.nombre +'&'+user.telefono+'&'+user.puerta+'&'+user.usuario+'&'+user.pass+'&'+user.id;
-    return this.http.put(url, user);
+    return this.http.put(url, JSON.stringify(user));
   }
 }

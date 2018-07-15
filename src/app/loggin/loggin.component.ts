@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Response } from "@angular/http";
 import { isEmpty } from "rxjs/operators";
 import { SqlService } from "../personal-panel/extra/sql.service";
 import { LoggedService } from "../personal-panel/extra/logged.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-loggin",
@@ -14,6 +15,7 @@ import { LoggedService } from "../personal-panel/extra/logged.service";
 export class LogginComponent implements OnInit {
   logginData: FormGroup;
   loggValidator = false;
+  sqlLoggin: Subscription;
   userForm: string;
   passForm: string;
 
@@ -47,7 +49,7 @@ export class LogginComponent implements OnInit {
     const autologgin = "test";
     this.userForm = autologgin;
     this.passForm = autologgin;
-    this.sqlService.loggin("test", "test").subscribe(
+    this.sqlLoggin = this.sqlService.loggin("test", "test").subscribe(
       (result: Response) => {
         this.logginValidator(result.json());
       },

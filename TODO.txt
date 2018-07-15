@@ -6,9 +6,11 @@ Trabajo sin hacer --> +
 mirar chartjs 
 
 --------------------------------------------------------------------------------------------------------
-+ Hacer la parte del usuario
-    + Cuando se actualicen datos los input se tienen que actualizar, y el
-    objeto general que uso yo tambien se tiene que actualizar
+* Hacer la parte del usuario
+    -- No entiendo como esta funcionando lo de cambiar datos de la base de datos
+    y que el objeto general que uso tambien se actualice OJO PIOJO CON ESTO 
+    * Cuando se actualicen datos los input se tienen que actualizar, y el
+    objeto general que uso yo tambien se tiene que actualizar (15-7-2018)
     * Cargar los datos del usuario en su input (13-7-2018) 
     * Añadir el boton editar datos (14-7-2018)
         * Boton actualizar datos (14-7-2018)

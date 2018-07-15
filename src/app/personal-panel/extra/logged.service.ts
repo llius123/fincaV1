@@ -1,5 +1,5 @@
-import { Router } from '@angular/router';
-import { Injectable } from '@angular/core';
+import { Router } from "@angular/router";
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class LoggedService {
@@ -12,9 +12,20 @@ export class LoggedService {
     password: "",
     usuario: ""
   };
-
   constructor(private router: Router) {}
-  
+
+  cleaner() {
+    this.test = {
+      id: " ",
+      tipo: " ",
+      nombre: " ",
+      telefono: " ",
+      puerta: " ",
+      password: " ",
+      usuario: " "
+    };
+  }
+
   saveData(data: JSON) {
     this.test = {
       id: data[0].id,

@@ -39,7 +39,7 @@ app.get("/", function(req, res) {
 
 app.get("/loggin/:usu/:pass", function(req, res) {
   connection.query(
-    "select * from usuario where nombre=? and password=?",
+    "select * from usuario where usuario=? and password=?",
     [req.params.usu, req.params.pass],
     function(error, results) {
       const dataString = JSON.stringify(results);
