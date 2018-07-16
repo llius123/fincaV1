@@ -34,11 +34,10 @@ export class UsersComponent implements OnInit {
       usuario: new FormControl(null),
       password: new FormControl(null)
     });
-    this.getUser(true);
+    this.getUser();
   }
 
-  getUser(boolean: boolean) {
-    if (boolean === true) {
+  getUser() {
       this.dataUser.patchValue({
         nombre: this.loggedService.getData().nombre,
         telefono: this.loggedService.getData().telefono,
@@ -47,7 +46,6 @@ export class UsersComponent implements OnInit {
         usuario: this.loggedService.getData().usuario
       });
     }
-  }
   //Al principio los datos no se pueden editar, pulsando el boton editar los label
   //pasaran a ser editables y a pareceran 2 botones mas
   editable() {
@@ -77,6 +75,5 @@ export class UsersComponent implements OnInit {
   cancelButton() {
     this.readOnly = true;
     this.modeEditable = false;
-    this.getUser(false);
   }
 }

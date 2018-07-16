@@ -1,15 +1,17 @@
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http, Response } from "@angular/http";
-import { map } from "rxjs/operators";
-import { User } from './user.model';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Actas } from './interfaces.services';
 
 @Injectable()
 export class SqlService {
 
   base = "http://localhost:3000";
 
-  constructor(private http: Http) {}
+  constructor(private http: Http,
+              private http2: HttpClient) {}
 
   loggin(user: string, pass: string) {
     const url =this.base + "/loggin/" + user + "/" + pass;
@@ -32,5 +34,11 @@ export class SqlService {
   updateUser(user: any){
     const url = this.base + "/updateUser/" + user.nombre +'&'+user.telefono+'&'+user.puerta+'&'+user.usuario+'&'+user.pass+'&'+user.id;
     return this.http.put(url, JSON.stringify(user));
+  }
+
+  //Lista todas las actas
+  allActas(): Observable<Actas>{
+    const url = this.base + "/allActas";
+    return this.http2.get<Actas>(url);
   }
 }

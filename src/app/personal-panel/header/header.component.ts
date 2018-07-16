@@ -14,4 +14,7 @@ export class HeaderComponent implements OnInit {
   listUsers() {
     this.route.navigate(["listUsers"], { relativeTo: this.router });
   }
+  listActas() {
+    this.route.navigate(["listActas"], { relativeTo: this.router });
+  }
 }

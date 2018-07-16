@@ -129,6 +129,17 @@ app.put("/updateUser/:name&:phone&:door&:user&:pas&:id", function(
   );
 });
 
+app.get("/allActas", function (req, res) {
+  connection.query(
+    "select * from Actas ",
+    [req.params.id, req.params.name],
+    function (error, result) {
+      const data = JSON.stringify(result);
+      res.end(data);
+    }
+  );
+});
+
 // app.put("/updateUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(req,res) {
 //   connection.query(
 //     "update Usuario where id = ? and nombre = ? and telefono = ? and puerta = ? and tipo_id = ? and usuario = ? and password = ? ",

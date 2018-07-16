@@ -6,7 +6,13 @@ Trabajo sin hacer --> +
 mirar chartjs 
 
 --------------------------------------------------------------------------------------------------------
-* Hacer la parte del usuario
++ Listado de actas
+    * Modificado la forma de enseñar la fecha ya que de la base de datos viene en forma DATE
+    y yo lo muestro como una concatenacion de strings
+    * Carga de todas las actas
+
++ Hacer la parte del usuario 
+    + Añadir validaciones tipo no en blanco, tipo email, tipo numero etc..
     -- No entiendo como esta funcionando lo de cambiar datos de la base de datos
     y que el objeto general que uso tambien se actualice OJO PIOJO CON ESTO 
     * Cuando se actualicen datos los input se tienen que actualizar, y el
@@ -15,6 +21,12 @@ mirar chartjs
     * Añadir el boton editar datos (14-7-2018)
         * Boton actualizar datos (14-7-2018)
         * Boton cancelar edicion datos (14-7-2018)
+
+* Dato curioso con el objeto tipo Date (16-7-2018)
+Si quieres insertar una consulta de la base de datos en un objeto date hay que hacerlo asi:
+const dateString ---> resultado obtenido de la base de datos
+const date = new Date(dateString) --> asi todos los metodos de la clase date funcionaran
+de otra forma no se.
 
 * Rehacer las rutas de database.js usando el operador '&' que no se porque insomnia no lo detecta pero expressjs
 si que utiliza esta propiedad, asi que a utilizarla y no usar tanto '/'
