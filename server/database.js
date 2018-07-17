@@ -132,8 +132,18 @@ app.put("/updateUser/:name&:phone&:door&:user&:pas&:id", function(
 app.get("/allActas", function(req, res) {
   connection.query(
     "select * from Actas ",
-    [req.params.id, req.params.name],
     function(error, result) {
+      const data = JSON.stringify(result);
+      res.end(data);
+    }
+  );
+});
+
+app.get("/acta/:id", function (req, res) {
+  connection.query(
+    "select * from Actas where id=?",
+    [req.params.id],
+    function (error, result) {
       const data = JSON.stringify(result);
       res.end(data);
     }

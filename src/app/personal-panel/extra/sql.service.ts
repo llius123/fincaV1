@@ -41,4 +41,10 @@ export class SqlService {
     const url = this.base + "/allActas";
     return this.http2.get(url);
   }
+
+  //Busco un acta determinada
+  acta(id: number){
+    const url = this.base + "/acta/" + id;
+    return this.http2.get(url);
+  }
 }

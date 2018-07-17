@@ -17,10 +17,6 @@ export class ActasComponent implements OnInit {
   allActas;
   saveData;
 
-  arrayDate = [];
-  arrayId = [];
-  arrayDescription = [];
-
   arrayAllData = [];
 
   date;
@@ -34,7 +30,7 @@ export class ActasComponent implements OnInit {
     this.allActas = this.sqlService.allActas();
     this.saveData = this.allActas.subscribe(data => {
       for (let q of data) {
-          this.arrayAllData.push([q.id, q.fecha, q.descripcion]);
+          this.arrayAllData.push([q.id, q.fecha, q.descripcion, q.textoCompleto]);
       }
     });
   }
