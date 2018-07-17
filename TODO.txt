@@ -7,9 +7,10 @@ mirar chartjs
 
 --------------------------------------------------------------------------------------------------------
 + Listado de actas
+    + Programar el componente Acta
     * Modificado la forma de enseñar la fecha ya que de la base de datos viene en forma DATE
-    y yo lo muestro como una concatenacion de strings
-    * Carga de todas las actas
+    y yo lo muestro como una concatenacion de strings (16-7-2018)
+    * Carga de todas las actas (16-7-2018)
 
 + Hacer la parte del usuario 
     + Añadir validaciones tipo no en blanco, tipo email, tipo numero etc..
@@ -21,6 +22,8 @@ mirar chartjs
     * Añadir el boton editar datos (14-7-2018)
         * Boton actualizar datos (14-7-2018)
         * Boton cancelar edicion datos (14-7-2018)
+
+* Añadido el paquete nmp-run-all y ahora cuando inicie npm start se iniciara la api y la aplicacion web
 
 * Dato curioso con el objeto tipo Date (16-7-2018)
 Si quieres insertar una consulta de la base de datos en un objeto date hay que hacerlo asi:

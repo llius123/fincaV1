@@ -37,8 +37,8 @@ export class SqlService {
   }
 
   //Lista todas las actas
-  allActas(): Observable<Actas>{
+  allActas(){
     const url = this.base + "/allActas";
-    return this.http2.get<Actas>(url);
+    return this.http2.get(url);
   }
 }

@@ -14,7 +14,7 @@ export class ActasComponent implements OnInit {
               private route: Router,
               private router: ActivatedRoute) {}
 
-  allActas: Observable<Actas>;
+  allActas;
   saveData;
 
   arrayDate = [];
