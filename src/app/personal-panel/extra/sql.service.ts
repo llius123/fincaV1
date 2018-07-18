@@ -47,4 +47,16 @@ export class SqlService {
     const url = this.base + "/acta/" + id;
     return this.http2.get(url);
   }
+
+  //Listo todos los gastos
+  allGastos(){
+    const url = this.base + "/allGastos";
+    return this.http2.get(url);
+  }
+
+  allTipoFactura(){
+    const url = this.base + "/allTipoFactura";
+    return this.http2.get(url);
+
+  }
 }

@@ -15,6 +15,7 @@ import { SqlService } from "./personal-panel/extra/sql.service";
 import { LoggedService } from "./personal-panel/extra/logged.service";
 import { ActasComponent } from './personal-panel/actas/actas.component';
 import { ActaComponent } from './personal-panel/actas/acta/acta.component';
+import { GastosComponent } from './personal-panel/gastos/gastos.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { ActaComponent } from './personal-panel/actas/acta/acta.component';
     HeaderComponent, 
     PersonalPanelComponent, 
     UsersComponent, 
-    ActasComponent, ActaComponent
+    ActasComponent, ActaComponent, GastosComponent
   ],
   imports: [
     BrowserModule,

@@ -150,6 +150,26 @@ app.get("/acta/:id", function (req, res) {
   );
 });
 
+app.get("/allGastos", function(req, res) {
+  connection.query("select * from Gastos", function(
+    error,
+    result
+  ) {
+    const data = JSON.stringify(result);
+    res.end(data);
+  });
+});
+
+app.get("/allTipoFactura", function(req, res) {
+  connection.query("select tipo from tipogastos", [req.params.id], function(
+    error,
+    result
+  ) {
+    const data = JSON.stringify(result);
+    res.end(data);
+  });
+});
+
 // app.put("/updateUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(req,res) {
 //   connection.query(
 //     "update Usuario where id = ? and nombre = ? and telefono = ? and puerta = ? and tipo_id = ? and usuario = ? and password = ? ",
