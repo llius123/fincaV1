@@ -17,6 +17,8 @@ export class ActasComponent implements OnInit {
   allActas;
   saveData;
 
+  dataLength;
+
   arrayAllData = [];
 
   date;
@@ -30,17 +32,18 @@ export class ActasComponent implements OnInit {
     this.allActas = this.sqlService.allActas();
     this.saveData = this.allActas.subscribe(data => {
       for (let q of data) {
-          this.arrayAllData.push([q.id, q.fecha, q.descripcion, q.textoCompleto]);
+        this.arrayAllData.push([q.id, this.transformDate(q.fecha), q.descripcion, q.textoCompleto]);
       }
     });
   }
-//Este metodo es llamadado desde el html
+  
   transformDate(data: any) {
     const date = new Date(data);
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
     const result = day + "-" + month + "-" + year;
+    console.log(this.arrayAllData)
     return result;
   }
   especificActa(idActa: number){

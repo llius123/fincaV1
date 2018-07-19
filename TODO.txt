@@ -1,11 +1,17 @@
 Trabajo hecho     --> *
 Trabajo sin hacer --> +
-
+Bug               --> ?
 -- AUTOLOGIN ACTIVADO ASI QUE SIEMPRE SE LOGEARA CON TEST TEST --
 
 mirar chartjs 
 
 --------------------------------------------------------------------------------------------------------
++ Gastos
+    ? Tengo que añadir el boton load data porque el html se carga antes de que las consultas 
+    a la base de dato llenen los objetos que he creado asi que no se que hacer.
+    ? Hay metodos que se repiten el doble de veces y no se porque, uso 
+    el console.log() y veo como metodos se ejecutan varias veces sin llamarlos
+    * Listar todos los gastos y convertir el tipo_id a string(18-7-2018)
 
 + Hacer la parte del usuario 
     + Añadir validaciones tipo no en blanco, tipo email, tipo numero etc..

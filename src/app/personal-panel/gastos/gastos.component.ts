@@ -23,17 +23,20 @@ export class GastosComponent implements OnInit, OnDestroy {
   constructor(private sqlService: SqlService) {}
 
   ngOnInit() {
-    this.subData = this.sqlService.allGastos().subscribe(data => {
-      this.addDataToArray(data);
-    });
     this.allTypeFactura = this.sqlService.allTipoFactura().subscribe(data => {
       this.addTypeToArray(data);
+    });
+    this.subData = this.sqlService.allGastos().subscribe(data => {
+      this.addDataToArray(data);
     });
   }
 
   ngOnDestroy() {
     this.subData.unsubscribe();
     this.allTypeFactura.unsubscribe();
+  }
+  console(i:number){
+    console.log('Indice del bucle for del html =  ' + i)
   }
 
   loadData(){
@@ -44,13 +47,13 @@ export class GastosComponent implements OnInit, OnDestroy {
       this.arrayData.push([
         q.id,
         q.numero_factura,
-        q.tipo_id,
+        this.whatTypeIs(q.tipo_id-1),
         this.transformDate(q.fecha_recepcion),
         this.transformDate(q.fecha_factura),
         q.descripcion
       ]);
     }
-    console.log(this.arrayData);
+    console.log(this.arrayData)
   }
   addTypeToArray(data: any) {
     for (let q of data) {
