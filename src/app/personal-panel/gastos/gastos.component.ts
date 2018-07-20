@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { SqlService } from "../extra/sql.service";
 import { Subscription } from "rxjs";
 import { Response } from "@angular/http";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-gastos",
@@ -11,16 +12,14 @@ import { Response } from "@angular/http";
 })
 export class GastosComponent implements OnInit, OnDestroy {
   subData: Subscription;
-  allTypeFactura: Subscription;
-
-  dataTypeFactura = [];
 
   arrayData = [];
-  arrayDataType = [];
 
   validator = false;
 
-  constructor(private sqlService: SqlService) {}
+  constructor(private sqlService: SqlService,
+              private router: ActivatedRoute,
+              private route: Router) {}
 
   ngOnInit() {
     this.subData = this.sqlService.allGastos().subscribe(data => {
@@ -43,17 +42,13 @@ export class GastosComponent implements OnInit, OnDestroy {
         q.tipo,
         this.transformDate(q.fecha_recepcion),
         this.transformDate(q.fecha_factura),
-        q.descripcion
+        q.descripcion,
+        q.titulo
       ]);
     }
   }
-  addTypeToArray(data: any) {
-    for (let q of data) {
-      this.arrayDataType.push(q);
-    }
-  }
-  whatTypeIs(id: number){
-    return this.arrayDataType[id].tipo;
+  indicidualGasto(id: number){
+    this.route.navigate(['gasto'], {relativeTo: this.router, queryParams: {id}});
   }
   transformDate(data: any) {
     const date = new Date(data);

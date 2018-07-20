@@ -17,6 +17,8 @@ o tenia que utilizar extensiones para que funcionara.
 ·Body-parser(npm)<br />
 · Run-all(npm)(sirve para hacer ng serve y nodemon database.js a la vez)
 +info: https://www.npmjs.com/package/npm-run-all<br />
+· ng-bootstrap(npm)<br />
++info: https://ng-bootstrap.github.io/#/home
 
 <br />
 Postam(antes usaba insomnia pero hay veces que con determinados caracteres no funciona asi 

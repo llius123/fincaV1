@@ -34,6 +34,8 @@ mirar chartjs
         * Boton actualizar datos (14-7-2018)
         * Boton cancelar edicion datos (14-7-2018)
 
+* Añadido ng-bootstrap(20-7-2018)(https://ng-bootstrap.github.io/#/home)
+
 * Listado de actas (17-7-2018)
     * Programar el componente Acta (17-7-2018)
     * Modificado la forma de enseñar la fecha ya que de la base de datos viene en forma DATE

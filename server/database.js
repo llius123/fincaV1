@@ -152,7 +152,7 @@ app.get("/acta/:id", function (req, res) {
 
 app.get("/allGastos", function(req, res) {
   connection.query(
-    "select g.id,g.numero_factura,t.tipo,g.fecha_recepcion,g.fecha_factura,g.descripcion  from gastos g, tipogastos t where g.tipo_id = t.id",
+    "select g.id,g.numero_factura,t.tipo,g.fecha_recepcion,g.fecha_factura,g.descripcion,g.titulo  from gastos g, tipogastos t where g.tipo_id = t.id",
     [req.params.id],
     function(error, result) {
       const data = JSON.stringify(result);

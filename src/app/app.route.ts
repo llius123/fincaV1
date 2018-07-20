@@ -6,6 +6,7 @@ import { PersonalPanelComponent } from "./personal-panel/personal-panel.componen
 import { UsersComponent } from "./personal-panel/users/users.component";
 import { ActasComponent } from "./personal-panel/actas/actas.component";
 import { GastosComponent } from './personal-panel/gastos/gastos.component';
+import { GastoComponent } from './personal-panel/gastos/gasto/gasto.component';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -14,7 +15,8 @@ const appRoutes: Routes = [
     { path: "listUsers", component: UsersComponent },
     { path: "listActas", component: ActasComponent },
     { path: "listActas/acta", component: ActaComponent },
-    { path: "gastos", component: GastosComponent}
+    { path: "gastos", component: GastosComponent},
+    { path: "gastos/gasto", component: GastoComponent }
   ] },
   { path: "**", redirectTo: "/login" }
 ];

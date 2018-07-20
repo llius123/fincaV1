@@ -1,11 +1,8 @@
 <div class="list-group" >
   <a 
+  (click)="indicidualGasto(data[0])"
   class="list-group-item" 
   *ngFor="let data of arrayData">
-    <div class="col-xs-3">
-      <h3>Numero de factura:</h3>
-      {{data[1]}}
-    </div>
     <div class="col-xs-3">
       <h3>Tipo de factura:</h3>
       {{data[2]}}
@@ -19,8 +16,8 @@
       {{data[4]}}
     </div>
     <div class="col-xs-3">
-      <h3>Descripcion: </h3>
-       {{data[5]}}
+      <h3>Titulo: </h3>
+       {{data[6]}}
     </div>
   </a>
 </div>
