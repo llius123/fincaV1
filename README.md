@@ -15,11 +15,12 @@
 o tenia que utilizar extensiones para que funcionara.
 +info: https://www.npmjs.com/package/cors) <br />
 ·Body-parser(npm)<br />
-· Run-all(npm)(sirve para hacer ng serve y nodemon database.js a la vez)
+·Run-all(npm)(sirve para hacer ng serve y nodemon database.js a la vez)
 +info: https://www.npmjs.com/package/npm-run-all<br />
-· ng-bootstrap(npm)<br />
+·ng-bootstrap(npm)<br />
 +info: https://ng-bootstrap.github.io/#/home
-
+·jquery(npm)<br />
+·popper.js(npm)<br />
 <br />
 Postam(antes usaba insomnia pero hay veces que con determinados caracteres no funciona asi 
 que he decidido dejar de usar insomnia por Postman)

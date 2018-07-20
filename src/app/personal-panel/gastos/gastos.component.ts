@@ -42,13 +42,9 @@ export class GastosComponent implements OnInit, OnDestroy {
         q.tipo,
         this.transformDate(q.fecha_recepcion),
         this.transformDate(q.fecha_factura),
-        q.descripcion,
-        q.titulo
+        q.descripcion
       ]);
     }
-  }
-  indicidualGasto(id: number){
-    this.route.navigate(['gasto'], {relativeTo: this.router, queryParams: {id}});
   }
   transformDate(data: any) {
     const date = new Date(data);

@@ -1,40 +1,58 @@
+import { Subscription } from 'rxjs';
 import { SqlService } from "./../extra/sql.service";
-import { Component, OnInit } from "@angular/core";
-import { Actas } from "../extra/interfaces.services";
-import { Observable } from "rxjs";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 
 @Component({
   selector: "app-actas",
   templateUrl: "./actas.component.html",
   styleUrls: ["./actas.component.css"]
 })
-export class ActasComponent implements OnInit {
-  constructor(private sqlService: SqlService,
-              private route: Router,
-              private router: ActivatedRoute) {}
+export class ActasComponent implements OnInit,OnDestroy {
+  constructor(private sqlService: SqlService) {}
 
-  allActas;
+  test = false;
+
+  allActas: Subscription;
   saveData;
 
   dataLength;
 
   arrayAllData = [];
+  arrayDataModal = []
 
-  date;
-  date2id: number;
+  fecha = "";
+  desc = "";
+  texto = "";
 
   ngOnInit() {
     this.loadAllActas();
   }
+  ngOnDestroy() {
+    this.allActas.unsubscribe();
+  }
 
   loadAllActas() {
-    this.allActas = this.sqlService.allActas();
-    this.saveData = this.allActas.subscribe(data => {
-      for (let q of data) {
-        this.arrayAllData.push([q.id, this.transformDate(q.fecha), q.descripcion, q.textoCompleto]);
-      }
+    this.allActas = this.sqlService.allActas().subscribe(data => {
+      this.addDataToArray(data);
     });
+  }
+
+  addDataToArray(data: any){
+    for (let q of data) {
+      this.arrayAllData.push([
+        q.id,
+        this.transformDate(q.fecha),
+        q.descripcion,
+        q.textoCompleto
+      ]);
+    }
+  }
+
+  dataModal(data: any){
+    this.fecha = data[1];
+    this.desc = data[2];
+    this.texto = data[3];
+    this.test = true;
   }
   
   transformDate(data: any) {
@@ -43,10 +61,6 @@ export class ActasComponent implements OnInit {
     const month = date.getMonth();
     const year = date.getFullYear();
     const result = day + "-" + month + "-" + year;
-    console.log(this.arrayAllData)
     return result;
-  }
-  especificActa(idActa: number){
-    this.route.navigate(["acta"], {relativeTo: this.router, queryParams: {idActa}});
   }
 }

@@ -1,6 +1,8 @@
 <div class="list-group">
   <a 
-  (click)="especificActa(index[0])"
+  data-toggle="modal" 
+  data-target="#myModal"
+  (click)="dataModal(index)"
   class="list-group-item list-group-item-action" 
   *ngFor="let index of arrayAllData">
     <div class="col-xs-3" >
@@ -11,4 +13,36 @@
       <h3>Descripcion:</h3> {{index[2]}}
     </div>
   </a>
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="myModal" *ngIf="test">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Acta del dia {{ fecha }}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <h4>
+          Descripcion:
+        </h4>
+        {{ desc }}
+        <br />
+        <h4>
+          Acta completa:
+        </h4>
+        {{ texto }}
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
 </div>
