@@ -53,10 +53,4 @@ export class SqlService {
     const url = this.base + "/allGastos";
     return this.http2.get(url);
   }
-
-  allTipoFactura(){
-    const url = this.base + "/allTipoFactura";
-    return this.http2.get(url);
-
-  }
 }
