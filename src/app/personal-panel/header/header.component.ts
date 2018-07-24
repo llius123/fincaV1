@@ -20,4 +20,7 @@ export class HeaderComponent implements OnInit {
   listGastos() {
     this.route.navigate(["gastos"], { relativeTo: this.router });
   }
+  incidencias() {
+    this.route.navigate(["incidencias"], { relativeTo: this.router });
+  }
 }

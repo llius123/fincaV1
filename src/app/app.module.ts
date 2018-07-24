@@ -15,9 +15,8 @@ import { UsersComponent } from './personal-panel/users/users.component';
 import { SqlService } from "./personal-panel/extra/sql.service";
 import { LoggedService } from "./personal-panel/extra/logged.service";
 import { ActasComponent } from './personal-panel/actas/actas.component';
-import { ActaComponent } from './personal-panel/actas/acta/acta.component';
 import { GastosComponent } from './personal-panel/gastos/gastos.component';
-import { GastoComponent } from "./personal-panel/gastos/gasto/gasto.component";
+import { IncidenciasComponent } from './personal-panel/incidencias/incidencias.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +26,8 @@ import { GastoComponent } from "./personal-panel/gastos/gasto/gasto.component";
     PersonalPanelComponent, 
     UsersComponent, 
     ActasComponent, 
-    ActaComponent, 
     GastosComponent, 
-    GastoComponent
+    IncidenciasComponent
   ],
   imports: [
     BrowserModule,

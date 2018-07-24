@@ -161,6 +161,15 @@ app.get("/allGastos", function(req, res) {
   );
 });
 
+app.get("/allGastosDesc", function(req, res){
+  connection.query(
+    "select descripcion from tipogastos",
+    function(error, result) {
+      res.end(JSON.stringify(result))
+    }
+  )
+})
+
 // app.put("/updateUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(req,res) {
 //   connection.query(
 //     "update Usuario where id = ? and nombre = ? and telefono = ? and puerta = ? and tipo_id = ? and usuario = ? and password = ? ",
