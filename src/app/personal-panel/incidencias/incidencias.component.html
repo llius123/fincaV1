@@ -1,17 +1,16 @@
 <div class="row">
   <div class="col-xs-12" class="mx-auto">
-    <form>
+    <form [formGroup]="dataForm">
       <div class="form-group">
-        <label for="exampleFormControlInput1"></label>
-        <input type="text" class="form-control">
+        <label>Titulo de la incidencia</label>
+        <input formControlName="title" type="text" class="form-control">
       </div>
       <div class="form-group">
-        
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <label>Descripcion de la incidencia</label>
+        <textarea formControlName="description" class="form-control" rows="3"></textarea>
       </div>
     </form>
+    <button class="btn btn-success" role="button" (click)="saveIncidencia()">Enviar</button>
+    <button class="btn btn-danger" role="button" (click)="clearInputs()">Cancelar</button>
   </div>
 </div>

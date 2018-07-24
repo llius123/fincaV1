@@ -161,11 +161,12 @@ app.get("/allGastos", function(req, res) {
   );
 });
 
-app.get("/allGastosDesc", function(req, res){
+app.post("/newIncidencia/:titulo&:descripcion", function(req, res) {
   connection.query(
-    "select descripcion from tipogastos",
+    "insert into incidencias set titulo=?, descripcion=?",
+    [req.params.titulo,req.params.descripcion],
     function(error, result) {
-      res.end(JSON.stringify(result))
+      (error) => { console.log(error);}
     }
   )
 })

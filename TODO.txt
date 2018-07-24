@@ -1,38 +1,19 @@
 Trabajo hecho     --> *
 Trabajo sin hacer --> +
 Bug               --> ?
-Comentario        --> $
-Arreglado         --> #
-Mejorado          --> &
+
 -- AUTOLOGIN ACTIVADO ASI QUE SIEMPRE SE LOGEARA CON TEST TEST --
 
 mirar chartjs 
 añadir css decente por dios
 
 --------------------------------------------------------------------------------------------------------
-+ Gastos
-    * Añadido al componente gasto el ng-bootstrap, intentar que funcione, y si funciona actualizar 
-    el componente actas
-        $ Comentario: No usado, y ademas como he añadido el jquery y el popper.js no creo que use 
-        el ng-bootstrap(20-7-2018)
-    * Pulsar en una factura y que se te carge el componente cargo y se vean todos los datos de ese
-    gasto detalladamente
-        $ Comentario: No he añadido esta opcion al final, solo listare todas las facturas(20-7-2018)
-    ? Tengo que añadir el boton load data porque el html se carga antes de que las consultas 
-    a la base de dato llenen los objetos que he creado asi que no se que hacer.
-        # Arreglado: Este bug ocurria por culpa del bug de repeticion de metodos, asi que una vez
-                 solucionado el anterior el boton ya no hace falta.(19-7-2018)
-    ? Hay metodos que se repiten el doble de veces y no se porque, uso 
-    el console.log() y veo como metodos se ejecutan varias veces sin llamarlos
-        # Arreglado: Esto ocurria porque desde el DOM hacia una llamada a un metodo que transformaba 
-                  un id en un string, asi que la solucion a sido en el momento en el que guardo 
-                  los datos de la base de datos en un array, transformar ese id en el string pertinente
-                  y asi el DOM se carga correctamente y no hay repeticion de llamadas a metodos.(19-7-2018)
-    * Listar todos los gastos y convertir el tipo_id a string(18-7-2018)
-        & Mejorado: HIJO QUE EXISTEN LAS CONSULTAS MULTITABLA, USALAS QUE PARA ALGO LAS HE 
-        ESTUDIADO JAJAJ. Hago una consulta multitabla y saco todos los datos necesarios(20-7-2018) 
++ Incidencias
+    + Validar los campos de incidencias
+    + Añadir un formulario de incidencias
+    * Añadir a la base de datos la tabla incidencias(24-7-2018)
 
-+ Hacer la parte del usuario 
++ Perfil de usuario 
     + Añadir validaciones tipo no en blanco, tipo email, tipo numero etc..
     -- No entiendo como esta funcionando lo de cambiar datos de la base de datos
     y que el objeto general que uso tambien se actualice OJO PIOJO CON ESTO 
@@ -43,6 +24,29 @@ añadir css decente por dios
         * Boton actualizar datos (14-7-2018)
         * Boton cancelar edicion datos (14-7-2018)
 
+* Gastos (20-7-2018)
+    * Añadido al componente gasto el ng-bootstrap, intentar que funcione, y si funciona actualizar 
+    el componente actas
+        Comentario: No usado, y ademas como he añadido el jquery y el popper.js no creo que use 
+        el ng-bootstrap(20-7-2018)
+    * Pulsar en una factura y que se te carge el componente cargo y se vean todos los datos de ese
+    gasto detalladamente
+        Comentario: No he añadido esta opcion al final, solo listare todas las facturas(20-7-2018)
+    ? Tengo que añadir el boton load data porque el html se carga antes de que las consultas 
+    a la base de dato llenen los objetos que he creado asi que no se que hacer.
+        Arreglado: Este bug ocurria por culpa del bug de repeticion de metodos, asi que una vez
+                 solucionado el anterior el boton ya no hace falta.(19-7-2018)
+    ? Hay metodos que se repiten el doble de veces y no se porque, uso 
+    el console.log() y veo como metodos se ejecutan varias veces sin llamarlos
+        Arreglado: Esto ocurria porque desde el DOM hacia una llamada a un metodo que transformaba 
+                  un id en un string, asi que la solucion a sido en el momento en el que guardo 
+                  los datos de la base de datos en un array, transformar ese id en el string pertinente
+                  y asi el DOM se carga correctamente y no hay repeticion de llamadas a metodos.(19-7-2018)
+    * Listar todos los gastos y convertir el tipo_id a string(18-7-2018)
+        Mejorado: HIJO QUE EXISTEN LAS CONSULTAS MULTITABLA, USALAS QUE PARA ALGO LAS HE 
+        ESTUDIADO JAJAJ. Hago una consulta multitabla y saco todos los datos necesarios(20-7-2018) 
+
+
 * Añadido jquery y popper.js para que funcione mejor bootstrap(20-7-2018)
 
 * Añadido ng-bootstrap(20-7-2018)(https://ng-bootstrap.github.io/#/home)
@@ -52,7 +56,7 @@ añadir css decente por dios
     * Modificado la forma de enseñar la fecha ya que de la base de datos viene en forma DATE
     y yo lo muestro como una concatenacion de strings (16-7-2018)
     * Carga de todas las actas (16-7-2018)
-    & Mejorado: En vez de cargar otro componente he añadido un modal en el que muestro toda la 
+    Mejorado: En vez de cargar otro componente he añadido un modal en el que muestro toda la 
         acta con su titulo, descripcion y fecha(20-7-2018)
 
 * Añadido el paquete nmp-run-all y ahora cuando inicie npm start se iniciara la api y la 
@@ -66,9 +70,9 @@ de otra forma no se.
 
 * Rehacer las rutas de database.js usando el operador '&' que no se porque insomnia no lo detecta pero expressjs
 si que utiliza esta propiedad, asi que a utilizarla y no usar tanto '/'
-Hacer ctrl + f y poner & y buscar toda la info/ejemplos que hay en la api oficial:
+Hacer ctrl + f y poner y buscar toda la info/ejemplos que hay en la api oficial:
 http://expressjs.com/es/4x/api.html
-Resultado: He acabado usando postman y con la concatenacion de objetos & y a tomar por culo insomnia
+Resultado: He acabado usando postman y con la concatenacion de objetos y a tomar por culo insomnia
 
 * Añadido un metodo de verifica que te hayas loggeado, si no te has logeado y has puesto la url 
 directamente te manda para loggin (14-7-2018) 

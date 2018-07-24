@@ -53,4 +53,10 @@ export class SqlService {
     const url = this.base + "/allGastos";
     return this.http2.get(url);
   }
+
+  //Nueva incidencia
+  newIncidencia(titulo: string, descripcion: string){
+    const url = this.base + "/newIncidencia/" + titulo + "&" + descripcion
+    return this.http2.post(url, titulo); 
+  }
 }
