@@ -8,9 +8,13 @@ mirar chartjs
 añadir css decente por dios
 
 --------------------------------------------------------------------------------------------------------
++ Añadir estilos a la aplicacion
++ Refactorizar codigo, aprender a usar modals y entender bien que hacen .subscribe
+
 + Incidencias
     + Validar los campos de incidencias
-    + Añadir un formulario de incidencias
+    * Añadido a la tabla incidencias la columna leido, caracteristica para el admin(24-7-2018)
+    * Añadir un formulario de incidencias(24-7-2018)
     * Añadir a la base de datos la tabla incidencias(24-7-2018)
 
 + Perfil de usuario 
@@ -23,6 +27,9 @@ añadir css decente por dios
     * Añadir el boton editar datos (14-7-2018)
         * Boton actualizar datos (14-7-2018)
         * Boton cancelar edicion datos (14-7-2018)
+
+* Refactorizado database.js, ahora transformo los datos recibidos en json y corto la conexion 
+nada mas recibir la respuesta(24-7-2018)
 
 * Gastos (20-7-2018)
     * Añadido al componente gasto el ng-bootstrap, intentar que funcione, y si funciona actualizar 

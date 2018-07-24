@@ -56,7 +56,7 @@ export class SqlService {
 
   //Nueva incidencia
   newIncidencia(titulo: string, descripcion: string){
-    const url = this.base + "/newIncidencia/" + titulo + "&" + descripcion
-    return this.http2.post(url, titulo); 
+    const url = this.base + "/newIncidencia/" + titulo + "&" + descripcion;
+    return this.http.put(url, JSON.stringify(titulo)); 
   }
 }

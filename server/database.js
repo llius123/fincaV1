@@ -37,15 +37,13 @@ app.get("/", function(req, res) {
   res.send("Finca API");
 });
 
+
 app.get("/loggin/:usu/:pass", function(req, res) {
   connection.query(
     "select * from usuario where usuario=? and password=?",
     [req.params.usu, req.params.pass],
-    function(error, results) {
-      const dataString = JSON.stringify(results);
-      //Transformo el array String de JSON en un array JSON
-      //const dataJson = JSON.parse(dataString);
-      res.end(dataString);
+    function(error, result) {
+      res.end(res.json(result));
     }
   );
 });
@@ -53,9 +51,8 @@ app.get("/loggin/:usu/:pass", function(req, res) {
 app.get("/allUsers", function(req, res) {
   connection.query(
     "select id, nombre, telefono, puerta, tipo_id, usuario, password from usuario",
-    function(error, results) {
-      const dataString = JSON.stringify(results);
-      res.end(dataString);
+    function(error, result) {
+      res.end(res.json(result));
     }
   );
 });
@@ -65,8 +62,7 @@ app.get("/type/:number", function(req, res) {
     "select titulo from tipo where id=?",
     [req.params.number],
     function(error, result) {
-      const dataString = JSON.stringify(result);
-      res.end(dataString);
+      res.end(res.json(result));
     }
   );
 });
@@ -76,8 +72,7 @@ app.get("/test/:id&:name", function(req, res) {
     "select * from usuario where id=? and nombre=?",
     [req.params.id, req.params.name],
     function(error, result) {
-      const data = JSON.stringify(result);
-      res.end(data);
+      res.end(res.json(result));
     }
   );
 });
@@ -96,7 +91,10 @@ app.post("/newUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(
       req.params.type_id,
       req.params.user,
       req.params.pas
-    ]
+    ],
+    function (result) {
+      res.end();
+    }
   );
 });
 
@@ -114,17 +112,8 @@ app.put("/updateUser/:name&:phone&:door&:user&:pas&:id", function(
       req.params.pas,
       req.params.id
     ],
-    function(error, results, fields) {
-      (error) => {
-        console.log(error)
-      }
-      (results) => {
-        console.log(results)
-      }
-      (fields) => {
-        console.log(fields)
-      }
-      res.end(JSON.stringify(results));
+    function(error, result, fields) {
+      res.end();
     }
   );
 });
@@ -133,8 +122,7 @@ app.get("/allActas", function(req, res) {
   connection.query(
     "select * from Actas ",
     function(error, result) {
-      const data = JSON.stringify(result);
-      res.end(data);
+      res.end(res.json(result));
     }
   );
 });
@@ -144,8 +132,7 @@ app.get("/acta/:id", function (req, res) {
     "select * from Actas where id=?",
     [req.params.id],
     function (error, result) {
-      const data = JSON.stringify(result);
-      res.end(data);
+      res.end(res.json(result));
     }
   );
 });
@@ -155,21 +142,20 @@ app.get("/allGastos", function(req, res) {
     "select g.id,g.numero_factura,t.tipo,g.fecha_recepcion,g.fecha_factura,g.descripcion,g.titulo  from gastos g, tipogastos t where g.tipo_id = t.id",
     [req.params.id],
     function(error, result) {
-      const data = JSON.stringify(result);
-      res.end(data);
+      res.end(res.json(result));
     }
   );
 });
 
-app.post("/newIncidencia/:titulo&:descripcion", function(req, res) {
+app.put("/newIncidencia/:titulo&:descripcion", function(req, res) {
   connection.query(
     "insert into incidencias set titulo=?, descripcion=?",
     [req.params.titulo,req.params.descripcion],
     function(error, result) {
-      (error) => { console.log(error);}
+      res.end(res.json(result));
     }
-  )
-})
+  );
+});
 
 // app.put("/updateUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(req,res) {
 //   connection.query(
@@ -183,7 +169,7 @@ app.post("/newIncidencia/:titulo&:descripcion", function(req, res) {
 //       req.params.user,
 //       req.params.pas
 //     ],
-//     function(error, results){
+//     function(error, result){
 //       console.log(error);
 //     }
 //   );
@@ -196,16 +182,16 @@ app.post("/newIncidencia/:titulo&:descripcion", function(req, res) {
 
 // //rest api to get all customers
 // app.get('/test', function (req, res) {
-//    connection.query('select * from categoria', function (error, results, fields) {
+//    connection.query('select * from categoria', function (error, result, fields) {
 // 	  if (error) throw error;
-// 	  res.end(JSON.stringify(results));
+// 	  res.end(JSON.stringify(result));
 // 	});
 // });
 // //rest api to get a single customer data
 // app.get('/customer/:id', function (req, res) {
-//    connection.query('select * from customers where Id=?', [req.params.id], function (error, results, fields) {
+//    connection.query('select * from customers where Id=?', [req.params.id], function (error, result, fields) {
 // 	  if (error) throw error;
-// 	  res.end(JSON.stringify(results));
+// 	  res.end(JSON.stringify(result));
 // 	});
 // });
 
@@ -213,24 +199,24 @@ app.post("/newIncidencia/:titulo&:descripcion", function(req, res) {
 // app.post('/customer', function (req, res) {
 //    const params  = req.body;
 //    console.log(params);
-//    connection.query('INSERT INTO customer SET ?', params, function (error, results, fields) {
+//    connection.query('INSERT INTO customer SET ?', params, function (error, result, fields) {
 // 	  if (error) throw error;
-// 	  res.end(JSON.stringify(results));
+// 	  res.end(JSON.stringify(result));
 // 	});
 // });
 
 // //rest api to update record into mysql database
 // app.put('/customer', function (req, res) {
-//    connection.query('UPDATE `customer` SET `Name`=?,`Address`=?,`Country`=?,`Phone`=? where `Id`=?', [req.body.Name,req.body.Address, req.body.Country, req.body.Phone, req.body.Id], function (error, results, fields) {
+//    connection.query('UPDATE `customer` SET `Name`=?,`Address`=?,`Country`=?,`Phone`=? where `Id`=?', [req.body.Name,req.body.Address, req.body.Country, req.body.Phone, req.body.Id], function (error, result, fields) {
 // 	  if (error) throw error;
-// 	  res.end(JSON.stringify(results));
+// 	  res.end(JSON.stringify(result));
 // 	});
 // });
 
 // //rest api to delete record from mysql database
 // app.delete('/customer', function (req, res) {
 //    console.log(req.body);
-//    connection.query('DELETE FROM `customer` WHERE `Id`=?', [req.body.Id], function (error, results, fields) {
+//    connection.query('DELETE FROM `customer` WHERE `Id`=?', [req.body.Id], function (error, result, fields) {
 // 	  if (error) throw error;
 // 	  res.end('Record has been deleted!');
 // 	});

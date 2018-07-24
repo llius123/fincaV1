@@ -25,7 +25,15 @@ export class IncidenciasComponent implements OnInit {
       title: this.dataForm.get("title").value,
       description: this.dataForm.get("description").value
     };
-    this.sqlService.newIncidencia(this.saveDataForm.title,this.saveDataForm.description).subscribe(
-    );
+    this.sqlService
+      .newIncidencia(this.saveDataForm.title, this.saveDataForm.description)
+      .subscribe();
+    this.clearInputs();
+  }
+  clearInputs() {
+    this.dataForm.patchValue({
+      title: "",
+      description: ""
+    });
   }
 }

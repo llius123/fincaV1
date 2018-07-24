@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class LoggedService {
-  test = {
+  logginData = {
     id: "",
     tipo: "",
     nombre: "",
@@ -17,7 +17,7 @@ export class LoggedService {
 
 //Objeto donde guardo los datos del usuario loggeado
   saveData(data: JSON) {
-    this.test = {
+    this.logginData = {
       id: data[0].id,
       nombre: data[0].nombre,
       tipo: data[0].tipo_id,
@@ -29,7 +29,7 @@ export class LoggedService {
   }
   //Devuelvo los datos del usuario logeado
   getData() {
-    return this.test;
+    return this.logginData;
   }
   //Si alguien accede directamente a una url especifica como el panel personal este
   //metodo lo devuelve al inicio ya que no se ha logeado
