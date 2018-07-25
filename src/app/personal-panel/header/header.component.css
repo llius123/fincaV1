@@ -2,8 +2,10 @@ nav {
   background-color: lightblue;
   border-bottom: 1px solid black;
 }
+li {
+    margin-left: 30px;
+}
 li a i {
-  margin-left: 30px;
   border: 1px solid black;
   border-radius: 25px;
   padding-left: 15px;
@@ -14,8 +16,10 @@ li a i {
 li a i:hover {
     background-color: blue;
 }
-ul p li i {
-    margin: 10px 10px 10px 10px;
+p {
+  margin: auto;
+  padding-right: 15px;
+    /* margin: 10px 10px 10px 10px; */
     border: 0px solid black;
 }
 

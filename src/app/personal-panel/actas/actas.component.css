@@ -1,3 +1,23 @@
 a:hover {
-    background-color: grey;
+    background-color: lightblue;
+}
+
+h3 {
+    font-family: serif;
+    font-weight: bold;
+    font-style: italic;
+}
+#div1{
+    padding-left: 5%;
+}
+#aGeneral{
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#divList {
+    padding-left: 5px;
+    padding-right: 5px;
 }

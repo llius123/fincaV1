@@ -28,6 +28,8 @@ añadir css decente por dios
         * Boton actualizar datos (14-7-2018)
         * Boton cancelar edicion datos (14-7-2018)
 
+* Css de lapne personal añadido(25-7-2018)
+
 * Boton cancelar de panle de control arreglado(25-7-2018)
 
 * Refactorizado database.js, ahora transformo los datos recibidos en json y corto la conexion 
