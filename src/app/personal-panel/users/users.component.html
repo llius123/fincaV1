@@ -1,34 +1,34 @@
-<div class="row">
-  <div class="col-xs-12" class="mx-auto" style="margin-top: 50px;">
-    <form [formGroup]="dataUser">
-      <div class="form-group">
-        <label>Nombre:</label>
-        <input formControlName="nombre" type="text" class="form-control" [readonly]="readOnly">
+<div class="col-xs-12" style="margin-top: 25px;">
+  <form [formGroup]="dataUser" style="width: 30%;margin-left: 40%;">
+    <div class="form-group">
+      <label>Nombre:</label>
+      <input formControlName="nombre" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Telefono</label>
+      <input formControlName="telefono" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Puerta</label>
+      <input formControlName="puerta" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Usuario</label>
+      <input formControlName="usuario" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input formControlName="password" type="password" class="form-control">
+    </div>
+    <div class="form-group">
+      <div class="alert alert-danger" role="alert" *ngIf="loggValidator">
+        <strong>Error</strong> Usuario o contraseña erroneos.
       </div>
-      <div class="form-group">
-        <label>Telefono</label>
-        <input formControlName="telefono" type="text" class="form-control" [readonly]="readOnly">
-      </div>
-      <div class="form-group">
-        <label>Puerta</label>
-        <input formControlName="puerta" type="text" class="form-control" [readonly]="readOnly">
-      </div>
-      <div class="form-group">
-        <label>Usuario</label>
-        <input formControlName="usuario" type="text" class="form-control" [readonly]="readOnly">
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input formControlName="password" type="password" class="form-control" [readonly]="readOnly">
-      </div>
-      <div class="form-group">
-        <div class="alert alert-danger" role="alert" *ngIf="loggValidator">
-          <strong>Error</strong> Usuario o contraseña erroneos.
-        </div>
-      </div>
+    </div>
+    <div>
       <button type="button" class="btn btn-success" *ngIf="modeEditable" (click)="updateData()">Guardar</button>
-      <button type="button" class="btn btn-danger" *ngIf="modeEditable" (click)="cancelButton()">Cancelar</button>
-      <button type="button" class="btn btn-primary" *ngIf="!modeEditable" (click)="editable()">Editar Datos</button>
-    </form>
-  </div>
+      <button style="float: right" type="button" class="btn btn-danger" *ngIf="modeEditable" (click)="cancellButton()">Cancelar</button>
+      <button style="margin-left: 30%;" type="button" class="btn btn-primary" *ngIf="!modeEditable" (click)="editable()">Editar Datos</button>
+    </div>
+  </form>
 </div>

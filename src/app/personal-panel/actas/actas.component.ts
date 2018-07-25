@@ -10,15 +10,9 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 export class ActasComponent implements OnInit,OnDestroy {
   constructor(private sqlService: SqlService) {}
 
-  test = false;
-
   allActas: Subscription;
-  saveData;
-
-  dataLength;
 
   arrayAllData = [];
-  arrayDataModal = []
 
   fecha = "";
   desc = "";
@@ -52,7 +46,6 @@ export class ActasComponent implements OnInit,OnDestroy {
     this.fecha = data[1];
     this.desc = data[2];
     this.texto = data[3];
-    this.test = true;
   }
   
   transformDate(data: any) {
