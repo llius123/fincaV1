@@ -21,3 +21,9 @@ h3 {
     padding-left: 5px;
     padding-right: 5px;
 }
+h3 {
+    text-decoration: underline;
+}
+h4 {
+    text-decoration: underline;
+}

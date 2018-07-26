@@ -9,6 +9,11 @@ añadir css decente por dios
 
 --------------------------------------------------------------------------------------------------------
 + Añadir estilos a la aplicacion
+    + Css de la pagina incidencias añadido
+    * Css de la pagina gastos añadido(26-7-2018)
+    * Css de la pagina actas añadido(25-7-2018)
+    * Css de la pagina personal añadido(25-7-2018)
+
 + Refactorizar codigo, aprender a usar modals y entender bien que hacen .subscribe
 
 + Incidencias
@@ -27,8 +32,6 @@ añadir css decente por dios
     * Añadir el boton editar datos (14-7-2018)
         * Boton actualizar datos (14-7-2018)
         * Boton cancelar edicion datos (14-7-2018)
-
-* Css de lapne personal añadido(25-7-2018)
 
 * Boton cancelar de panle de control arreglado(25-7-2018)
 

@@ -1,22 +1,31 @@
-<div class="list-group" >
-  <a
-  class="list-group-item" 
-  *ngFor="let data of arrayData">
-    <div class="col-xs-3">
-      <h3>Tipo de factura:</h3>
-      {{data[2]}}
-    </div>
-    <div class="col-xs-3">
-      <h3>Fecha de recepcion: </h3>
-      {{data[3]}}
-    </div>
-    <div class="col-xs-3">
-      <h3>Fecha de factura: </h3>
-      {{data[4]}}
-    </div>
-    <div class="col-xs-3">
-      <h3>Descripcion: </h3>
-       {{data[5]}}
-    </div>
-  </a>
 
+<div class="list-group">
+    <a class="list-group-item" *ngFor="let data of arrayData" id="aBorder">
+      <div class="row">
+        <div class="col-xs-3" id="test">
+          <h3>Tipo de factura:</h3>
+          <div class="test">
+            {{data[2]}}
+          </div>
+        </div>
+        <div class="col-xs-3" id="test">
+          <h3>Fecha de recepcion: </h3>
+          <div class="test">
+            {{data[3]}}
+          </div>
+        </div>
+        <div class="col-xs-3" id="test">
+          <h3>Fecha de factura: </h3>
+          <div class="test">
+            {{data[4]}}
+          </div>
+        </div>
+        <div class="col-xs-3" id="test">
+          <h3>Descripcion: </h3>
+          <div class="test2">
+            {{data[5]}}
+          </div>
+        </div>
+      </div>
+    </a>
+</div>
