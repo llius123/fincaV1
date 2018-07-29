@@ -18,7 +18,6 @@ import { LoggedService } from "./personal-panel/extra/logged.service";
 import { ActasComponent } from './personal-panel/actas/actas.component';
 import { GastosComponent } from './personal-panel/gastos/gastos.component';
 import { IncidenciasComponent } from './personal-panel/incidencias/incidencias.component';
-import { BusquedagastosComponent } from './personal-panel/gastos/busquedagastos/busquedagastos.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,7 @@ import { BusquedagastosComponent } from './personal-panel/gastos/busquedagastos/
     UsersComponent, 
     ActasComponent, 
     GastosComponent, 
-    IncidenciasComponent, BusquedagastosComponent
+    IncidenciasComponent
   ],
   imports: [
     BrowserModule,

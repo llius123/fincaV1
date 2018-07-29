@@ -67,8 +67,8 @@ export class SqlService {
   }
 
   //Buscar gastos por el tipo 
-  gastosByType(tipo: string){
-    const url = this.base + "/gastosByType/:" + tipo;
+  gastosByType(tipo: string, order: number){
+    const url = this.base + "/gastosByType/" + tipo + "/" + order;
     return this.http2.get(url);
   }
 }

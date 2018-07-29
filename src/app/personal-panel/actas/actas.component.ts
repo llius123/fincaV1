@@ -52,11 +52,5 @@ export class ActasComponent implements OnInit,OnDestroy {
   
   transformDate(data: any) {
     return this.genericClass.transformDate(data);
-    // const date = new Date(data);
-    // const day = date.getDate();
-    // const month = date.getMonth();
-    // const year = date.getFullYear();
-    // const result = day + "-" + month + "-" + year;
-    // return result;
   }
 }

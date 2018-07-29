@@ -155,9 +155,17 @@ app.get("/allTypesGastos", function(req, res) {
   });
 });
 
-app.get("/gastosByType/:tipo", function(req, res) {
+app.get("/gastosByType/:tipo/:order", function(req, res) {
+  const querys = "";
+  if (req.params.order == 1) {
+    this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "' order by g.fecha_recepcion";
+  } else if (req.params.order == 2){
+    this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "' order by g.fecha_factura";
+  }else{
+    this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "'";
+  }
   connection.query(
-    "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo = 'agua'",
+    this.querys,
     function(error, result) {
       res.end(res.json(result));
     });

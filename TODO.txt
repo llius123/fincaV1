@@ -9,8 +9,6 @@ añadir css decente por dios
 cambiar los arrays de toda la aplicacion porque me da la sensacion  que hacen agua por todos lados
 
 --------------------------------------------------------------------------------------------------------
-+ Arreglar la busqueda de facturas, osea que cuando el valor del combobox sea 1 el boton no se muestre
-o este disabled
 
 + Añadir estilos a la aplicacion
     + Css de la pagina incidencias añadido
@@ -37,7 +35,13 @@ o este disabled
         * Boton actualizar datos (14-7-2018)
         * Boton cancelar edicion datos (14-7-2018)
 
-* Boton cancelar de panle de control arreglado(25-7-2018)
+* Arreglar la busqueda de facturas, osea que cuando el valor del combobox sea 1 el boton no se muestre
+o este disabled(29-7-2018)
+
+* Añadido la clase general GeneralClass donde he añadido el metodo tranformDate para poder usar este 
+metodo en toda la aplicacion(29-7-2018)
+
+* Boton cancelar de panel de control arreglado(25-7-2018)
 
 * Refactorizado database.js, ahora transformo los datos recibidos en json y corto la conexion 
 nada mas recibir la respuesta(24-7-2018)

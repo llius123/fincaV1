@@ -1,29 +1,23 @@
 <div class="row">
   <nav class="navbar navbar-light bg-light" id="navBarSearch">
     <form class="form-inline">
-      <input 
-      #inputSearchRecepcion
-      class="form-control mr-sm-2" 
-      type="search" 
-      placeholder="Fecha de recepcion" 
-      aria-label="Search">
-      <input 
-      #inputSearchFactura 
-      class="form-control mr-sm-2" 
-      type="search" 
-      placeholder="Fecha de factura" 
-      aria-label="Search">
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
       </div>
       <select class="custom-select" #optionSelected>
         <option value="0">Selecciona...</option>
-        <option *ngFor="let data of arrayGastos" value="{{data[0]}}" >{{data[1]}}</option>
+        <option *ngFor="let data of arrayGastos" value="{{data[1]}}">{{data[1]}}</option>
       </select>
-      <button 
-      class="btn btn-outline-success my-2 my-sm-0" 
-      type="button" 
-      (click)="dataSearchForm(inputSearchRecepcion.value,inputSearchFactura.value,optionSelected.value)">Buscar</button>
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Ordernar</label>
+      </div>
+      <select class="custom-select" #optionSelectedFecha>
+        <option value="0">Selecciona...</option>
+        <option value="1">Fecha de recepcion</option>
+        <option value="2">Fecha de Factura</option>
+      </select>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="button" 
+      (click)="dataSearchForm(optionSelected.value, optionSelectedFecha.value)">Buscar</button>
     </form>
   </nav>
 </div>
