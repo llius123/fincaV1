@@ -1,3 +1,4 @@
+import { GenericClass } from './personal-panel/extra/generic.services';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -17,6 +18,7 @@ import { LoggedService } from "./personal-panel/extra/logged.service";
 import { ActasComponent } from './personal-panel/actas/actas.component';
 import { GastosComponent } from './personal-panel/gastos/gastos.component';
 import { IncidenciasComponent } from './personal-panel/incidencias/incidencias.component';
+import { BusquedagastosComponent } from './personal-panel/gastos/busquedagastos/busquedagastos.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { IncidenciasComponent } from './personal-panel/incidencias/incidencias.c
     UsersComponent, 
     ActasComponent, 
     GastosComponent, 
-    IncidenciasComponent
+    IncidenciasComponent, BusquedagastosComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import { IncidenciasComponent } from './personal-panel/incidencias/incidencias.c
     AppRoute,
     NgbModule.forRoot()
   ],
-  providers: [SqlService, LoggedService],
+  providers: [SqlService, LoggedService, GenericClass],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

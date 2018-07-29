@@ -1,9 +1,12 @@
-import { OnDestroy } from "@angular/core";
+import { FormControl, FormControlName } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
+import { OnDestroy, ViewChild, ElementRef } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 import { SqlService } from "../extra/sql.service";
 import { Subscription } from "rxjs";
 import { Response } from "@angular/http";
 import { ActivatedRoute, Router } from "@angular/router";
+import { GenericClass } from "../extra/generic.services";
 
 @Component({
   selector: "app-gastos",
@@ -12,27 +15,48 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class GastosComponent implements OnInit, OnDestroy {
   subData: Subscription;
+  subTypes: Subscription;
 
   arrayData = [];
+  arrayGastos = [];
+
+  arraySearch = [];
+
+  selectedOption: number;
 
   validator = false;
 
-  constructor(private sqlService: SqlService,
-              private router: ActivatedRoute,
-              private route: Router) {}
+  searchDisabled = false;
+
+  constructor(
+    private sqlService: SqlService,
+    private router: ActivatedRoute,
+    private route: Router,
+    private genericClass: GenericClass
+  ) {}
 
   ngOnInit() {
     this.subData = this.sqlService.allGastos().subscribe(data => {
       this.addDataToArray(data);
     });
+    this.subTypes = this.sqlService.allTypesGastos().subscribe(data => {
+      this.addDataTipoGastosToArray(data);
+    });
   }
 
   ngOnDestroy() {
     this.subData.unsubscribe();
+    this.subTypes.unsubscribe();
   }
 
-  loadData(){
-    this.validator = true;
+  dataSearchForm(inputSearchRecepcion: string,inputSearchFactura: string,optionSelected: number) {
+    console.log(inputSearchRecepcion)
+  }
+
+  addDataTipoGastosToArray(data: any) {
+    for (let q of data) {
+      this.arrayGastos.push([q.id, q.tipo]);
+    }
   }
   addDataToArray(data: any) {
     for (let q of data) {
@@ -47,11 +71,6 @@ export class GastosComponent implements OnInit, OnDestroy {
     }
   }
   transformDate(data: any) {
-    const date = new Date(data);
-    const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    const result = day + "-" + month + "-" + year;
-    return result;
+    return this.genericClass.transformDate(data);
   }
 }

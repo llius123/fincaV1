@@ -1,6 +1,7 @@
 import { Subscription } from 'rxjs';
 import { SqlService } from "./../extra/sql.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
+import { GenericClass } from '../extra/generic.services';
 
 @Component({
   selector: "app-actas",
@@ -8,7 +9,8 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
   styleUrls: ["./actas.component.css"]
 })
 export class ActasComponent implements OnInit,OnDestroy {
-  constructor(private sqlService: SqlService) {}
+  constructor(private sqlService: SqlService,
+              private genericClass: GenericClass) {}
 
   allActas: Subscription;
 
@@ -49,11 +51,12 @@ export class ActasComponent implements OnInit,OnDestroy {
   }
   
   transformDate(data: any) {
-    const date = new Date(data);
-    const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    const result = day + "-" + month + "-" + year;
-    return result;
+    return this.genericClass.transformDate(data);
+    // const date = new Date(data);
+    // const day = date.getDate();
+    // const month = date.getMonth();
+    // const year = date.getFullYear();
+    // const result = day + "-" + month + "-" + year;
+    // return result;
   }
 }

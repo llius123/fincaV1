@@ -59,4 +59,16 @@ export class SqlService {
     const url = this.base + "/newIncidencia/" + titulo + "&" + descripcion;
     return this.http.put(url, JSON.stringify(titulo)); 
   }
+
+  //Todos los tipos de gastos
+  allTypesGastos(){
+    const url = this.base + "/allTypesGastos";
+    return this.http2.get(url);
+  }
+
+  //Buscar gastos por el tipo 
+  gastosByType(tipo: string){
+    const url = this.base + "/gastosByType/:" + tipo;
+    return this.http2.get(url);
+  }
 }

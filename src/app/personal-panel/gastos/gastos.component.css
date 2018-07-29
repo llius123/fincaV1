@@ -1,8 +1,12 @@
+#navBarSearch {
+    /* padding-left: 35%; */
+}
+
 a:hover {
     background-color: lightblue;
 }
 
-.test {
+.dataArray {
     padding: 10px;
     /* background-color: red; */
     font-family: serif;
@@ -13,14 +17,14 @@ a:hover {
 /*
 css solo para la descripcion
 */
-.test2 {
+.dataArray2 {
     padding: 10px;
     /* background-color: red; */
     font-family: serif;
     font-weight: bold;
 }
 
-#test {
+#divData {
     /* background-color: blue; */
     margin-left: 10px;
     margin-right: 10px;

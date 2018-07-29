@@ -6,8 +6,12 @@ Bug               --> ?
 
 mirar chartjs 
 añadir css decente por dios
+cambiar los arrays de toda la aplicacion porque me da la sensacion  que hacen agua por todos lados
 
 --------------------------------------------------------------------------------------------------------
++ Arreglar la busqueda de facturas, osea que cuando el valor del combobox sea 1 el boton no se muestre
+o este disabled
+
 + Añadir estilos a la aplicacion
     + Css de la pagina incidencias añadido
     * Css de la pagina gastos añadido(26-7-2018)

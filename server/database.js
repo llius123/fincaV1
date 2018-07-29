@@ -37,7 +37,6 @@ app.get("/", function(req, res) {
   res.send("Finca API");
 });
 
-
 app.get("/loggin/:usu/:pass", function(req, res) {
   connection.query(
     "select * from usuario where usuario=? and password=?",
@@ -92,16 +91,13 @@ app.post("/newUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(
       req.params.user,
       req.params.pas
     ],
-    function (result) {
+    function(result) {
       res.end();
     }
   );
 });
 
-app.put("/updateUser/:name&:phone&:door&:user&:pas&:id", function(
-  req,
-  res
-) {
+app.put("/updateUser/:name&:phone&:door&:user&:pas&:id", function(req, res) {
   connection.query(
     "update usuario set nombre = ?, telefono = ?, puerta = ?, usuario = ?, password = ? where id = ?",
     [
@@ -119,22 +115,18 @@ app.put("/updateUser/:name&:phone&:door&:user&:pas&:id", function(
 });
 
 app.get("/allActas", function(req, res) {
-  connection.query(
-    "select * from Actas ",
-    function(error, result) {
-      res.end(res.json(result));
-    }
-  );
+  connection.query("select * from Actas ", function(error, result) {
+    res.end(res.json(result));
+  });
 });
 
-app.get("/acta/:id", function (req, res) {
-  connection.query(
-    "select * from Actas where id=?",
-    [req.params.id],
-    function (error, result) {
-      res.end(res.json(result));
-    }
-  );
+app.get("/acta/:id", function(req, res) {
+  connection.query("select * from Actas where id=?", [req.params.id], function(
+    error,
+    result
+  ) {
+    res.end(res.json(result));
+  });
 });
 
 app.get("/allGastos", function(req, res) {
@@ -150,11 +142,25 @@ app.get("/allGastos", function(req, res) {
 app.put("/newIncidencia/:titulo&:descripcion", function(req, res) {
   connection.query(
     "insert into incidencias set titulo=?, descripcion=?",
-    [req.params.titulo,req.params.descripcion],
+    [req.params.titulo, req.params.descripcion],
     function(error, result) {
       res.end(res.json(result));
     }
   );
+});
+
+app.get("/allTypesGastos", function(req, res) {
+  connection.query("select * from tipogastos", function(error, result) {
+    res.end(res.json(result));
+  });
+});
+
+app.get("/gastosByType/:tipo", function(req, res) {
+  connection.query(
+    "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo = 'agua'",
+    function(error, result) {
+      res.end(res.json(result));
+    });
 });
 
 // app.put("/updateUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(req,res) {
