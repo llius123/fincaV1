@@ -131,7 +131,7 @@ app.get("/acta/:id", function(req, res) {
 
 app.get("/allGastos", function(req, res) {
   connection.query(
-    "select g.id,g.numero_factura,t.tipo,g.fecha_recepcion,g.fecha_factura,g.descripcion,g.titulo  from gastos g, tipogastos t where g.tipo_id = t.id",
+    "select g.id,g.numero_factura,t.tipo,g.fecha_recepcion,g.fecha_factura,g.descripcion,g.titulo  from gastos g, tipogastos t where g.tipo_id = t.id order by g.fecha_recepcion desc",
     [req.params.id],
     function(error, result) {
       res.end(res.json(result));
@@ -150,17 +150,21 @@ app.put("/newIncidencia/:titulo&:descripcion", function(req, res) {
 });
 
 app.get("/allTypesGastos", function(req, res) {
-  connection.query("select * from tipogastos", function(error, result) {
+  connection.query("select * from tipogastos ", function(
+    error,
+    result
+  ) {
     res.end(res.json(result));
   });
 });
 
 app.get("/gastosByType/:tipo/:order", function(req, res) {
   const querys = "";
+  console.log(req.params.order)
   if (req.params.order == 1) {
-    this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "' order by g.fecha_recepcion";
+    this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "' order by g.fecha_recepcion desc";
   } else if (req.params.order == 2){
-    this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "' order by g.fecha_factura";
+    this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "' order by g.fecha_factura desc";
   }else{
     this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "'";
   }

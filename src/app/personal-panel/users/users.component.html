@@ -26,7 +26,7 @@
       </div>
     </div>
     <div>
-      <button type="button" class="btn btn-success hvr-grow" *ngIf="modeEditable" (click)="updateData()">Guardar</button>
+      <button type="button" class="btn btn-outline-primary hvr-grow" *ngIf="modeEditable" (click)="updateData()">Guardar</button>
       <button style="float: right" type="button" class="btn btn-danger hvr-grow" *ngIf="modeEditable" (click)="cancellButton()">Cancelar</button>
       <button style="margin-left: 30%;" type="button" class="btn btn-primary hvr-grow" *ngIf="!modeEditable" (click)="editable()">Editar Datos</button>
     </div>

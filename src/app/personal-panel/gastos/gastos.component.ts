@@ -16,7 +16,6 @@ import { GenericClass } from "../extra/generic.services";
 export class GastosComponent implements OnInit, OnDestroy {
   subData: Subscription;
   subTypes: Subscription;
-  searchByTipe: Subscription;
 
   arrayData = [];
   arrayGastos = [];
@@ -48,19 +47,18 @@ export class GastosComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subData.unsubscribe();
     this.subTypes.unsubscribe();
-    this.searchByTipe.unsubscribe();
   }
 
   dataSearchForm(optionSelected: string, orderBy: number) {
     if(optionSelected !== '0'){
-      if(orderBy !== 0){
-        this.searchByTipe = this.sqlService.gastosByType(optionSelected, orderBy).subscribe(
+      if(orderBy > 0){
+        this.sqlService.gastosByType(optionSelected, orderBy).subscribe(
           (data) => {
             this.addDataToArray(data);
           }
         );
       }else{
-        this.subData = this.sqlService.allGastos().subscribe(data => {
+        this.subData = this.sqlService.gastosByType(optionSelected, 1).subscribe(data => {
           this.addDataToArray(data);
         });        
       }

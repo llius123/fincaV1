@@ -10,8 +10,12 @@ cambiar los arrays de toda la aplicacion porque me da la sensacion  que hacen ag
 
 --------------------------------------------------------------------------------------------------------
 
++ Modificar el css de los hover ya que la licencia gratis no puedo usar la pagina css que me descarge
+ai no que tengo que copiar su codigo en mi clase css
+
 + Añadir estilos a la aplicacion
     + Css de la pagina incidencias añadido
+    + Css barra busca facturas de gastos
     * Css de la pagina gastos añadido(26-7-2018)
     * Css de la pagina actas añadido(25-7-2018)
     * Css de la pagina personal añadido(25-7-2018)

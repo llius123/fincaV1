@@ -1,5 +1,22 @@
-<div class="row">
-  <div class="col-xs-12" class="mx-auto">
+<form class="form" [formGroup]="dataForm" style="margin-top: 25px;">
+  <div class="input-group mb-3" id="divTitulo" style="width: 69%;">
+    <div class="input-group-prepend" style="width: 38%;">
+      <span class="input-group-text" id="basic-addon3" style="width: 100%;border: 1px solid black">Titulo de la incidencia</span>
+    </div>
+    <input style="border: 1px solid black" type="text" class="form-control  hvr-border-fade" aria-describedby="basic-addon3" formControlName="title">
+  </div>
+  <div class="input-group mb-3" id="divTitulo" style="width: 69%;">
+    <div class="input-group-prepend" style="width: 38%;">
+      <span class="input-group-text" id="basic-addon3" style="width: 100%;border: 1px solid black">Descripcion de la incidencia</span>
+    </div>
+    <textarea style="border: 1px solid black" class="form-control hvr-border-fade" aria-label="With textarea" formControlName="description"></textarea>
+  </div>
+</form>
+<button class="btn btn-outline-success" role="button" (click)="saveIncidencia()" style="margin-left: 47%;">Enviar</button>
+<button class="btn btn-outline-danger" role="button" (click)="clearInputs()" style="margin-left: 13px;">Cancelar</button>
+
+<!-- <div class="row">
+  <div class="col-xs-12 mx-auto" id="divGeneral">
     <form [formGroup]="dataForm">
       <div class="form-group">
         <label>Titulo de la incidencia</label>
@@ -13,4 +30,4 @@
     <button class="btn btn-success" role="button" (click)="saveIncidencia()">Enviar</button>
     <button class="btn btn-danger" role="button" (click)="clearInputs()">Cancelar</button>
   </div>
-</div>
+</div> -->
