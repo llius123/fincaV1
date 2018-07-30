@@ -13,24 +13,22 @@ cambiar los arrays de toda la aplicacion porque me da la sensacion  que hacen ag
 + Modificar el css de los hover ya que la licencia gratis no puedo usar la pagina css que me descarge
 ai no que tengo que copiar su codigo en mi clase css
 
-+ Añadir estilos a la aplicacion
-    + Css de la pagina incidencias añadido
-    + Css barra busca facturas de gastos
-    * Css de la pagina gastos añadido(26-7-2018)
-    * Css de la pagina actas añadido(25-7-2018)
-    * Css de la pagina personal añadido(25-7-2018)
 
 + Refactorizar codigo, aprender a usar modals y entender bien que hacen .subscribe
 
-+ Incidencias
-    + Validar los campos de incidencias
+* Validaciones mejoradas con la propiedad .errors?. lo que sea, required, pattern, 
+maxlenght etcc(20-7-2018)
+https://www.concretepage.com/angular-2/angular-2-4-pattern-validation-example
+
+* Incidencias(30-7-2018)
+    * Validar los campos de incidencias(30-7-2018)
     * Añadido a la tabla incidencias la columna leido, caracteristica para el admin(24-7-2018)
     * Añadir un formulario de incidencias(24-7-2018)
     * Añadir a la base de datos la tabla incidencias(24-7-2018)
 
-+ Perfil de usuario 
-    + Añadir validaciones tipo no en blanco, tipo email, tipo numero etc..
-    -- No entiendo como esta funcionando lo de cambiar datos de la base de datos
+* Perfil de usuario (30-7-2018)
+    * Añadir validaciones tipo no en blanco, tipo email, tipo numero etc..(30-7-2018)
+        Las validaciones solo son que no esten en blanco
     y que el objeto general que uso tambien se actualice OJO PIOJO CON ESTO 
     * Cuando se actualicen datos los input se tienen que actualizar, y el
     objeto general que uso yo tambien se tiene que actualizar (15-7-2018)
@@ -39,6 +37,13 @@ ai no que tengo que copiar su codigo en mi clase css
         * Boton actualizar datos (14-7-2018)
         * Boton cancelar edicion datos (14-7-2018)
 
+* Añadir estilos a la aplicacion(30-7-2018)
+    * Css de la pagina incidencias añadido(30-7-2018)
+    * Css barra busca facturas de gastos(30-7-2018)
+    * Css de la pagina gastos añadido(26-7-2018)
+    * Css de la pagina actas añadido(25-7-2018)
+    * Css de la pagina personal añadido(25-7-2018)
+    
 * Arreglar la busqueda de facturas, osea que cuando el valor del combobox sea 1 el boton no se muestre
 o este disabled(29-7-2018)
 

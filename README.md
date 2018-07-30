@@ -28,5 +28,11 @@ que he decidido dejar de usar insomnia por Postman)
 ·DIA(Para hacer diagramas UML y diagramas de bases de datos)
 <br />
 
+## Imagenes de la aplicacion 0.0.1v
+![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/1.png)
+![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/2.png)
+![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/3.png)
+![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/4.png)
+![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/5.png)
 
 ## Leer TODO.txt para mas info
