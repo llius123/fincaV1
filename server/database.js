@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const connection = require("./server");
 const cors = require("cors");
 
+process.setMaxListeners(0);
 connection.connect(function(err) {
   if (err) throw err;
   console.log(
@@ -49,8 +50,9 @@ app.get("/loggin/:usu/:pass", function(req, res) {
 
 app.get("/allUsers", function(req, res) {
   connection.query(
-    "select id, nombre, telefono, puerta, tipo_id, usuario, password from usuario",
+    "select u.id,u.nombre,u.telefono,u.puerta,t.titulo,u.usuario,u.password from usuario u,tipousuario t where t.id = u.tipo_id",
     function(error, result) {
+      if (error) throw error;
       res.end(res.json(result));
     }
   );
@@ -76,14 +78,10 @@ app.get("/test/:id&:name", function(req, res) {
   );
 });
 
-app.post("/newUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(
-  req,
-  res
-) {
+app.post("/newUser/:name&:phone&:door&:type_id&:user&:pas", function(req, res) {
   connection.query(
-    "insert into Usuario(id,nombre,telefono,puerta,tipo_id,usuario,password) values(?,?,?,?,?,?,?)",
+    "insert into usuario(nombre,telefono,puerta,tipo_id,usuario,password) values(?,?,?,?,?,?)",
     [
-      req.params.id,
       req.params.name,
       req.params.phone,
       req.params.door,
@@ -91,27 +89,37 @@ app.post("/newUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(
       req.params.user,
       req.params.pas
     ],
-    function(result) {
-      res.end();
+    function(result, error) {
+      res.end(JSON.stringify(result));
     }
   );
 });
 
-app.put("/updateUser/:name&:phone&:door&:user&:pas&:id", function(req, res) {
+app.put("/updateUser/:name&:phone&:door&:title&:user&:pas&:id", function(
+  req,
+  res
+) {
   connection.query(
-    "update usuario set nombre = ?, telefono = ?, puerta = ?, usuario = ?, password = ? where id = ?",
+    " update usuario  set nombre = ?, telefono = ?, puerta = ?, tipo_id = ?, usuario = ?, password = ? where id = ? ",
     [
       req.params.name,
       req.params.phone,
       req.params.door,
+      req.params.title,
       req.params.user,
       req.params.pas,
       req.params.id
     ],
     function(error, result, fields) {
-      res.end();
+      if (error) throw error;
+      res.end(JSON.stringify(result));
     }
   );
+});
+app.get("/allActas", function(req, res) {
+  connection.query("select * from Actas ", function(error, result) {
+    res.end(res.json(result));
+  });
 });
 
 app.get("/allActas", function(req, res) {
@@ -150,29 +158,33 @@ app.put("/newIncidencia/:titulo&:descripcion", function(req, res) {
 });
 
 app.get("/allTypesGastos", function(req, res) {
-  connection.query("select * from tipogastos ", function(
-    error,
-    result
-  ) {
+  connection.query("select * from tipogastos ", function(error, result) {
     res.end(res.json(result));
   });
 });
 
 app.get("/gastosByType/:tipo/:order", function(req, res) {
   const querys = "";
-  console.log(req.params.order)
+  console.log(req.params.order);
   if (req.params.order == 1) {
-    this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "' order by g.fecha_recepcion desc";
-  } else if (req.params.order == 2){
-    this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "' order by g.fecha_factura desc";
-  }else{
-    this.querys = "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" + req.params.tipo + "'";
+    this.querys =
+      "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" +
+      req.params.tipo +
+      "' order by g.fecha_recepcion desc";
+  } else if (req.params.order == 2) {
+    this.querys =
+      "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" +
+      req.params.tipo +
+      "' order by g.fecha_factura desc";
+  } else {
+    this.querys =
+      "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.titulo, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and t.tipo ='" +
+      req.params.tipo +
+      "'";
   }
-  connection.query(
-    this.querys,
-    function(error, result) {
-      res.end(res.json(result));
-    });
+  connection.query(this.querys, function(error, result) {
+    res.end(res.json(result));
+  });
 });
 
 // app.put("/updateUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(req,res) {

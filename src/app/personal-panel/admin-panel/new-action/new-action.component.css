@@ -1,0 +1,21 @@
+input {
+  border-color: black;
+  font-style: italic;
+  font-size: 20px;
+  padding-left: 10%;
+  color: black;
+}
+
+label {
+  font-family: serif;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+input:hover {
+  background-color: lightblue;
+}
+.editUserLink:hover {
+    background-color: lightblue;
+}

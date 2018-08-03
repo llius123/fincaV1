@@ -3,6 +3,9 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class LoggedService {
+
+  admin: boolean;
+
   logginData = {
     id: "",
     tipo: "",
@@ -10,7 +13,8 @@ export class LoggedService {
     telefono: "",
     puerta: "",
     password: "",
-    usuario: ""
+    usuario: "",
+    admin: "" 
   };
 
   constructor(private router: Router) {}
@@ -24,8 +28,23 @@ export class LoggedService {
       telefono: data[0].telefono,
       puerta: data[0].puerta,
       password: data[0].password,
-      usuario: data[0].usuario
+      usuario: data[0].usuario,
+      admin: data[0].tipo_id
     };
+    this.isAdmin(this.logginData.admin);
+  }
+
+  //Guardo si el usuario es admin o no
+  isAdmin(number: string){
+    if(number == '1'){
+      this.admin = true;
+    }else{
+      this.admin = false;
+    }
+  }
+
+  getAdmin(){
+    return this.admin
   }
   //Devuelvo los datos del usuario logeado
   getData() {
@@ -35,7 +54,7 @@ export class LoggedService {
   //metodo lo devuelve al inicio ya que no se ha logeado
   loggedValidator() {
     if (this.getData().id === "") {
-      this.router.navigate(["/"]);
+      this.router.navigate(["/login"]);
     }
   }
   //Metodo para updatear los datos del panel personal

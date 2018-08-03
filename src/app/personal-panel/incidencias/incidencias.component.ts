@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { SqlService } from "../extra/sql.service";
 
 @Component({
@@ -15,8 +15,8 @@ export class IncidenciasComponent implements OnInit {
 
   ngOnInit() {
     this.dataForm = new FormGroup({
-      title: new FormControl(null),
-      description: new FormControl(null)
+      title: new FormControl(null, [Validators.required]),
+      description: new FormControl(null, [Validators.required])
     });
   }
 

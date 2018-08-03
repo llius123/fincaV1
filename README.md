@@ -17,7 +17,7 @@ o tenia que utilizar extensiones para que funcionara.<br />
 ·Body-parser(npm)<br />
 ·Run-all(npm)(sirve para hacer ng serve y nodemon database.js a la vez)<br />
 +info: https://www.npmjs.com/package/npm-run-all<br />
-·ng-bootstrap(npm)<br />
+·ng-bootstrap(npm)(deprecated)<br />
 +info: https://ng-bootstrap.github.io/#/home<br />
 ·jquery(npm)<br />
 ·popper.js(npm)<br />

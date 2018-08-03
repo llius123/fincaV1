@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <div class="col xs-9">
+      {{ titulo }}
+    </div>
+    <div class="col-xs-3">
+      <button class="btn btn-outline-dark" (click)="goBack()">
+        Volver 
+      </button>
+    </div>
+  </div>
+  <hr />
+</div>
+<div class="container" *ngIf="newUser">
+  <div class="row">
+    <div class="col-xs-6" style="width: 30%;margin: auto; margin-top: 5%;">
+      <form [formGroup]="dataUser">
+        <div class="form-group">
+          <label>Nombre:</label>
+          <input formControlName="nombre" type="text" class="form-control">
+          <div *ngIf="dataUser.get('nombre').errors?.required && editUserValidator" style="color: red; margin-top: 5px;font-weight: bold">Nombre no puede estar en blanco</div>
+        </div>
+        <div class="form-group">
+          <label>Telefono</label>
+          <input formControlName="telefono" type="text" class="form-control">
+          <div *ngIf="dataUser.get('telefono').errors?.required && editUserValidator" style="color: red; margin-top: 5px;font-weight: bold">Telefono no puede estar en blanco</div>
+        </div>
+        <div class="form-group">
+          <label>Puerta</label>
+          <input formControlName="puerta" type="text" class="form-control">
+          <div *ngIf="dataUser.get('puerta').errors?.required && editUserValidator" style="color: red; margin-top: 5px;font-weight: bold">Puerta no puede estar en blanco</div>
+        </div>
+        <div class="form-group">
+          <label>Tipo Usuario</label>
+          <input formControlName="tipo" type="text" class="form-control">
+          <div *ngIf="dataUser.get('tipo').errors?.required && editUserValidator" style="color: red; margin-top: 5px;font-weight: bold">El tipo de usuario no puede estar en blanco</div>
+        </div>
+        <div class="form-group">
+          <label>Usuario</label>
+          <input formControlName="usuario" type="text" class="form-control">
+          <div *ngIf="!dataUser.get('usuario').valid && editUserValidator" style="color: red; margin-top: 5px;font-weight: bold">Usuario no puede estar en blanco</div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input formControlName="password" type="password" class="form-control">
+          <div *ngIf="!dataUser.get('password').valid && editUserValidator" password style="color: red; margin-top: 5px;font-weight: bold">Password no puede estar en blanco</div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Guardar</button>
+          <button style="margin-left: 13%" type="button" class="btn btn-outline-warning hvr-grow" (click)="editUser()">Editar</button>
+          <button style="float: right" type="button" class="btn btn-outline-danger hvr-grow" (click)="cancellButton()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-6" style="width: 30%;margin: auto; margin-top: 5%;">
+      <ul *ngFor="let array of userInterface; let i = index" class="editUserLink">
+        <a (click)="editUser(array)">
+          <li>ID: {{array[0] }}</li>
+          <li>Nombre: {{array[1] }}</li>
+          <li>Telefono: {{array[2] }}</li>
+          <li>Puerta: {{array[3] }}</li>
+          <li>Tipo: {{array[4] }}</li>
+          <li>Usuario: {{array[5] }}</li>
+          <li>Password: {{array[6] }}</li>
+        </a>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="newActa">
+  <div class="row">
+    new acta
+  </div>
+</div>
+
+<div class="container" *ngIf="newGasto">
+  <div class="row">
+    new gasto
+  </div>
+</div>
+
+<div class="container" *ngIf="newIncidencia">
+  <div class="row">
+    new incidencia
+  </div>
+</div>

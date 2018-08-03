@@ -8,6 +8,8 @@ mirar chartjs
 añadir css decente por dios
 cambiar los arrays de toda la aplicacion porque me da la sensacion  que hacen agua por todos lados
 
+Usar para los http request el private http2: HttpClient porque los json que devuelve son mas 
+faciles de usar y de jugar con ellos(3-8-2018)
 --------------------------------------------------------------------------------------------------------
 
 + Modificar el css de los hover ya que la licencia gratis no puedo usar la pagina css que me descarge
@@ -16,15 +18,16 @@ ai no que tengo que copiar su codigo en mi clase css
 
 + Refactorizar codigo, aprender a usar modals y entender bien que hacen .subscribe
 
-* Validaciones mejoradas con la propiedad .errors?. lo que sea, required, pattern, 
-maxlenght etcc(20-7-2018)
-https://www.concretepage.com/angular-2/angular-2-4-pattern-validation-example
 
-* Incidencias(30-7-2018)
-    * Validar los campos de incidencias(30-7-2018)
++ Incidencias
+    + Validar los campos de incidencias
     * Añadido a la tabla incidencias la columna leido, caracteristica para el admin(24-7-2018)
     * Añadir un formulario de incidencias(24-7-2018)
     * Añadir a la base de datos la tabla incidencias(24-7-2018)
+
+* Validaciones mejoradas con la propiedad .errors?. lo que sea, required, pattern, 
+maxlenght etc...(20-7-2018)
+https://www.concretepage.com/angular-2/angular-2-4-pattern-validation-example
 
 * Perfil de usuario (30-7-2018)
     * Añadir validaciones tipo no en blanco, tipo email, tipo numero etc..(30-7-2018)

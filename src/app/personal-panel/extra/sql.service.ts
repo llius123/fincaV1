@@ -21,7 +21,12 @@ export class SqlService {
   //Lista de todos los usuarios de la base de datos
   allUsers() {
     const url =this.base + "/allUsers";
-    return this.http.get(url);
+    return this.http2.get(url);
+  }
+
+  newUser(name: string, phone: string, door: number,type: number, user: string, password: string  ){
+    const url = this.base + "/newUser/" + name + "&" + phone + "&" + door + "&" + type + "&" + user + "&" +password;
+    return this.http2.post(url, name);
   }
 
   //Devuelve el string del type_id
@@ -32,7 +37,7 @@ export class SqlService {
 
   //Updateo los datos del usuario
   updateUser(user: any){
-    const url = this.base + "/updateUser/" + user.nombre +'&'+user.telefono+'&'+user.puerta+'&'+user.usuario+'&'+user.pass+'&'+user.id;
+    const url = this.base + "/updateUser/" + user.nombre +'&'+user.telefono+'&'+user.puerta+ '&' + user.titulo +'&'+user.usuario+'&'+user.pass+'&'+user.id;
     return this.http.put(url, JSON.stringify(user));
   }
 

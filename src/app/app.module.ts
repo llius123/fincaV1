@@ -18,6 +18,8 @@ import { LoggedService } from "./personal-panel/extra/logged.service";
 import { ActasComponent } from './personal-panel/actas/actas.component';
 import { GastosComponent } from './personal-panel/gastos/gastos.component';
 import { IncidenciasComponent } from './personal-panel/incidencias/incidencias.component';
+import { AdminPanelComponent } from './personal-panel/admin-panel/admin-panel.component';
+import { NewActionComponent } from './personal-panel/admin-panel/new-action/new-action.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { IncidenciasComponent } from './personal-panel/incidencias/incidencias.c
     UsersComponent, 
     ActasComponent, 
     GastosComponent, 
-    IncidenciasComponent
+    IncidenciasComponent, AdminPanelComponent, NewActionComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
+import { LoggedService } from "../extra/logged.service";
 
 @Component({
   selector: "app-header",
@@ -7,10 +8,25 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-  constructor(private route: Router, private router: ActivatedRoute) {}
+  constructor(
+    private route: Router,
+    private router: ActivatedRoute,
+    private logged: LoggedService
+  ) {}
 
-  ngOnInit() {}
+  adminAttr: boolean;
 
+  ngOnInit() {
+    this.adminAttr = this.logged.getAdmin();
+  }
+  admin() {
+    if (this.adminAttr === false) {
+      return "none";
+    }
+  }
+  adminComponent(){
+    this.route.navigate(["admin_panel"], { relativeTo: this.router });
+  }
   listUsers() {
     this.route.navigate(["listUsers"], { relativeTo: this.router });
   }
