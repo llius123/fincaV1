@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
@@ -80,7 +81,6 @@ export class NewActionComponent implements OnInit, OnDestroy {
       telefono: new FormControl(null, Validators.required),
       puerta: new FormControl(null, Validators.required),
       tipo: new FormControl(null, Validators.required),
-      tipo1: new FormControl(null),
       usuario: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required)
     });

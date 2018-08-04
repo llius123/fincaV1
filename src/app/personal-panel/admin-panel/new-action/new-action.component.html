@@ -36,8 +36,8 @@
         </div>
         <div class="form-group">
           <label>Tipo Usuario</label>
-          <select formControlName="tipo1" class="custom-select" #optionSelected>
-            <option formControlName="tipo" *ngFor="let data of allTipeUsers" value="{{data[0]}}">{{data[1]}}</option>
+          <select formControlName="tipo" class="custom-select" #optionSelected>
+            <option *ngFor="let data of allTipeUsers" value="{{data[0]}}">{{data[1]}}</option>
           </select>
         </div>
         <div class="form-group">

@@ -28,10 +28,11 @@ ai no que tengo que copiar su codigo en mi clase css
     * Añadir a la base de datos la tabla incidencias(24-7-2018)
 
 + Panel Administrador
-    ? Cuando edito un usuario la lista se tiene que actualizar y no lo hace por ahora
-    * Crear nuevos usuarios(3-8-2019)
-    + Editar usuarios
-    + Eliminar usuarios
+    ? Cuando selecciono un usuario el combobox debe mostrar el tipo de usuario y no se como solucionarlo
+    * Cuando edito un usuario la lista se tiene que actualizar y no lo hace por ahora(4-8-2018)
+    * Crear nuevos usuarios(3-8-2018)
+    * Editar usuarios(3-8-2018)
+    * Eliminar usuarios(3-8-2018)
     + Crear nuevas actas y borrar las ya existentes
     + Crear y borrar gastos
     + Borrar incidencias de la base de datos
