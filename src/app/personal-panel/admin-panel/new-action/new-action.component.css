@@ -19,3 +19,9 @@ input:hover {
 .editUserLink:hover {
     background-color: lightblue;
 }
+
+.editUserLink{
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-right: 10px;
+}

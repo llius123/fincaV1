@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `incidencias` (
   KEY `Index 1` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- Dumping data for table finca.incidencias: ~2 rows (approximately)
+-- Dumping data for table finca.incidencias: ~1 rows (approximately)
 /*!40000 ALTER TABLE `incidencias` DISABLE KEYS */;
 REPLACE INTO `incidencias` (`id`, `titulo`, `descripcion`, `leido`) VALUES
 	(14, 'qwe', 'qwe', 'N'),
@@ -120,15 +120,16 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   UNIQUE KEY `id` (`id`),
   KEY `Usuario_fk0` (`tipo_id`),
   CONSTRAINT `Usuario_fk0` FOREIGN KEY (`tipo_id`) REFERENCES `tipousuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table finca.usuario: ~4 rows (approximately)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 REPLACE INTO `usuario` (`id`, `nombre`, `telefono`, `puerta`, `tipo_id`, `usuario`, `password`) VALUES
-	(1, 'jesus', '123', 123, 1, 'test', 'test'),
-	(2, 'editado', '123123123', 2, 1, 'test2', 'test2'),
+	(1, 'jesusqwe', '123', 12, 1, 'test', 'test'),
+	(2, 'editado', '123123123', 2, 2, 'test2', 'test2'),
 	(3, 'Jesus', '1234567', 3, 1, 'jesus', 'jesus'),
-	(4, 'qwe', '500', 50, 1, 'pepito', 'e');
+	(4, 'qwe', '500', 50, 1, 'e', 'e'),
+	(32, 'qwe', '1', 1, 1, '1', '1');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -7,6 +7,8 @@ Bug               --> ?
 mirar chartjs 
 añadir css decente por dios
 cambiar los arrays de toda la aplicacion porque me da la sensacion  que hacen agua por todos lados
+mirar graphql para mejorar la api(https://graphql.org/)
+mirar restify, es como expressjs pero se supone que mejor(restify.com)
 
 Usar para los http request el private http2: HttpClient porque los json que devuelve son mas 
 faciles de usar y de jugar con ellos(3-8-2018)
@@ -25,6 +27,15 @@ ai no que tengo que copiar su codigo en mi clase css
     * Añadir un formulario de incidencias(24-7-2018)
     * Añadir a la base de datos la tabla incidencias(24-7-2018)
 
++ Panel Administrador
+    ? Cuando edito un usuario la lista se tiene que actualizar y no lo hace por ahora
+    * Crear nuevos usuarios(3-8-2019)
+    + Editar usuarios
+    + Eliminar usuarios
+    + Crear nuevas actas y borrar las ya existentes
+    + Crear y borrar gastos
+    + Borrar incidencias de la base de datos
+    
 * Validaciones mejoradas con la propiedad .errors?. lo que sea, required, pattern, 
 maxlenght etc...(20-7-2018)
 https://www.concretepage.com/angular-2/angular-2-4-pattern-validation-example

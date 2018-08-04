@@ -43,6 +43,7 @@ app.get("/loggin/:usu/:pass", function(req, res) {
     "select * from usuario where usuario=? and password=?",
     [req.params.usu, req.params.pass],
     function(error, result) {
+      if (error) console.log(error);
       res.end(res.json(result));
     }
   );
@@ -50,19 +51,31 @@ app.get("/loggin/:usu/:pass", function(req, res) {
 
 app.get("/allUsers", function(req, res) {
   connection.query(
-    "select u.id,u.nombre,u.telefono,u.puerta,t.titulo,u.usuario,u.password from usuario u,tipousuario t where t.id = u.tipo_id",
+    "select u.id,u.nombre,u.telefono,u.puerta,t.titulo,u.usuario,u.password from usuario u,tipousuario t where t.id = u.tipo_id order by u.id",
     function(error, result) {
-      if (error) throw error;
+      if (error) console.log(error);
       res.end(res.json(result));
     }
   );
 });
+
+app.delete("/deleteUser/:id", function(req, res) {
+  connection.query(
+    "delete from usuario where id = ?",
+    [req.params.id],
+    function (error, result) {
+      if (error) console.log(error);
+      res.end(res.json(result));
+    }
+  )
+})
 
 app.get("/type/:number", function(req, res) {
   connection.query(
     "select titulo from tipo where id=?",
     [req.params.number],
     function(error, result) {
+      if (error) console.log(error);
       res.end(res.json(result));
     }
   );
@@ -73,6 +86,7 @@ app.get("/test/:id&:name", function(req, res) {
     "select * from usuario where id=? and nombre=?",
     [req.params.id, req.params.name],
     function(error, result) {
+      if (error) console.log(error);
       res.end(res.json(result));
     }
   );
@@ -90,6 +104,7 @@ app.post("/newUser/:name&:phone&:door&:type_id&:user&:pas", function(req, res) {
       req.params.pas
     ],
     function(result, error) {
+      if (error) console.log(error);
       res.end(JSON.stringify(result));
     }
   );
@@ -111,19 +126,14 @@ app.put("/updateUser/:name&:phone&:door&:title&:user&:pas&:id", function(
       req.params.id
     ],
     function(error, result, fields) {
-      if (error) throw error;
+      if (error) console.log(error);
       res.end(JSON.stringify(result));
     }
   );
 });
 app.get("/allActas", function(req, res) {
   connection.query("select * from Actas ", function(error, result) {
-    res.end(res.json(result));
-  });
-});
-
-app.get("/allActas", function(req, res) {
-  connection.query("select * from Actas ", function(error, result) {
+    if (error) console.log(error);
     res.end(res.json(result));
   });
 });
@@ -133,6 +143,7 @@ app.get("/acta/:id", function(req, res) {
     error,
     result
   ) {
+    if (error) console.log(error);
     res.end(res.json(result));
   });
 });
@@ -142,6 +153,7 @@ app.get("/allGastos", function(req, res) {
     "select g.id,g.numero_factura,t.tipo,g.fecha_recepcion,g.fecha_factura,g.descripcion,g.titulo  from gastos g, tipogastos t where g.tipo_id = t.id order by g.fecha_recepcion desc",
     [req.params.id],
     function(error, result) {
+      if (error) console.log(error);
       res.end(res.json(result));
     }
   );
@@ -152,6 +164,7 @@ app.put("/newIncidencia/:titulo&:descripcion", function(req, res) {
     "insert into incidencias set titulo=?, descripcion=?",
     [req.params.titulo, req.params.descripcion],
     function(error, result) {
+      if (error) console.log(error);
       res.end(res.json(result));
     }
   );
@@ -159,6 +172,13 @@ app.put("/newIncidencia/:titulo&:descripcion", function(req, res) {
 
 app.get("/allTypesGastos", function(req, res) {
   connection.query("select * from tipogastos ", function(error, result) {
+    if (error) console.log(error);
+    res.end(res.json(result));
+  });
+});
+app.get("/allTypeUser", function (req, res) {
+  connection.query("select * from tipousuario ", function (error, result) {
+    if (error) console.log(error);
     res.end(res.json(result));
   });
 });
@@ -183,6 +203,7 @@ app.get("/gastosByType/:tipo/:order", function(req, res) {
       "'";
   }
   connection.query(this.querys, function(error, result) {
+    if (error) console.log(error);
     res.end(res.json(result));
   });
 });
@@ -214,14 +235,16 @@ app.get("/gastosByType/:tipo/:order", function(req, res) {
 // app.get('/test', function (req, res) {
 //    connection.query('select * from categoria', function (error, result, fields) {
 // 	  if (error) throw error;
-// 	  res.end(JSON.stringify(result));
-// 	});
+// if (error) console.log(error); //
+// res.end(JSON.stringify(result));
+// // 	});
 // });
 // //rest api to get a single customer data
 // app.get('/customer/:id', function (req, res) {
 //    connection.query('select * from customers where Id=?', [req.params.id], function (error, result, fields) {
 // 	  if (error) throw error;
-// 	  res.end(JSON.stringify(result));
+// if (error) console.log(error); //
+// res.end(JSON.stringify(result));
 // 	});
 // });
 
@@ -231,7 +254,8 @@ app.get("/gastosByType/:tipo/:order", function(req, res) {
 //    console.log(params);
 //    connection.query('INSERT INTO customer SET ?', params, function (error, result, fields) {
 // 	  if (error) throw error;
-// 	  res.end(JSON.stringify(result));
+// if (error) console.log(error); //
+// res.end(JSON.stringify(result));
 // 	});
 // });
 
@@ -239,8 +263,9 @@ app.get("/gastosByType/:tipo/:order", function(req, res) {
 // app.put('/customer', function (req, res) {
 //    connection.query('UPDATE `customer` SET `Name`=?,`Address`=?,`Country`=?,`Phone`=? where `Id`=?', [req.body.Name,req.body.Address, req.body.Country, req.body.Phone, req.body.Id], function (error, result, fields) {
 // 	  if (error) throw error;
-// 	  res.end(JSON.stringify(result));
-// 	});
+// if (error) console.log(error); //
+// res.end(JSON.stringify(result));
+// // 	});
 // });
 
 // //rest api to delete record from mysql database
@@ -248,6 +273,7 @@ app.get("/gastosByType/:tipo/:order", function(req, res) {
 //    console.log(req.body);
 //    connection.query('DELETE FROM `customer` WHERE `Id`=?', [req.body.Id], function (error, result, fields) {
 // 	  if (error) throw error;
-// 	  res.end('Record has been deleted!');
+// if (error) console.log(error); //
+// res.end("Record has been deleted!");
 // 	});
 // });

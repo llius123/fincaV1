@@ -23,12 +23,22 @@ export class SqlService {
     const url =this.base + "/allUsers";
     return this.http2.get(url);
   }
-
+  //Creo nuevo usuario
   newUser(name: string, phone: string, door: number,type: number, user: string, password: string  ){
     const url = this.base + "/newUser/" + name + "&" + phone + "&" + door + "&" + type + "&" + user + "&" +password;
     return this.http2.post(url, name);
   }
+  //Edito un usuario
+  editUser(name: string, phone: string, door: number, type: number, user: string, password: string,id: number) {
+    const url = this.base + "/updateUser/" + name + "&" + phone + "&" + door + "&" + type + "&" + user + "&" + password + "&" + id;
+    return this.http2.put(url, name);
+  }
 
+  //Eliminar usuario
+  deleteUser(id: number){
+    const url = this.base + "/deleteUser/" + id
+    return this.http2.delete(url);
+  }
   //Devuelve el string del type_id
   getType(number: number) {
     const url =this.base + "/type/" + number;
@@ -46,6 +56,8 @@ export class SqlService {
     const url = this.base + "/allActas";
     return this.http2.get(url);
   }
+
+  
 
   //Busco un acta determinada
   acta(id: number){
@@ -70,6 +82,13 @@ export class SqlService {
     const url = this.base + "/allTypesGastos";
     return this.http2.get(url);
   }
+
+  //Todos los tipos de usuarios
+  allTypesUsuarios(){
+    const url = this.base + "/allTypeUser";
+    return this.http2.get(url);
+  }
+
 
   //Buscar gastos por el tipo 
   gastosByType(tipo: string, order: number){

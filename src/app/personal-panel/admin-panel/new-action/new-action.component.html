@@ -4,8 +4,8 @@
       {{ titulo }}
     </div>
     <div class="col-xs-3">
-      <button class="btn btn-outline-dark" (click)="goBack()">
-        Volver 
+      <button class="btn btn-outline-dark" (click)="goBackButton()">
+        Volver
       </button>
     </div>
   </div>
@@ -15,6 +15,10 @@
   <div class="row">
     <div class="col-xs-6" style="width: 30%;margin: auto; margin-top: 5%;">
       <form [formGroup]="dataUser">
+        <div class="form-group">
+          <label>ID:</label>
+          <input formControlName="id" type="text" class="form-control">
+        </div>
         <div class="form-group">
           <label>Nombre:</label>
           <input formControlName="nombre" type="text" class="form-control">
@@ -32,8 +36,9 @@
         </div>
         <div class="form-group">
           <label>Tipo Usuario</label>
-          <input formControlName="tipo" type="text" class="form-control">
-          <div *ngIf="dataUser.get('tipo').errors?.required && editUserValidator" style="color: red; margin-top: 5px;font-weight: bold">El tipo de usuario no puede estar en blanco</div>
+          <select formControlName="tipo1" class="custom-select" #optionSelected>
+            <option formControlName="tipo" *ngFor="let data of allTipeUsers" value="{{data[0]}}">{{data[1]}}</option>
+          </select>
         </div>
         <div class="form-group">
           <label>Usuario</label>
@@ -46,13 +51,14 @@
           <div *ngIf="!dataUser.get('password').valid && editUserValidator" password style="color: red; margin-top: 5px;font-weight: bold">Password no puede estar en blanco</div>
         </div>
         <div>
-          <button type="button" class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Guardar</button>
-          <button style="margin-left: 13%" type="button" class="btn btn-outline-warning hvr-grow" (click)="editUser()">Editar</button>
+          <button type="button" class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
+          <button style="margin-left: 13%" type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
+          <button style="margin-left: 13%" type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
           <button style="float: right" type="button" class="btn btn-outline-danger hvr-grow" (click)="cancellButton()">Cancelar</button>
         </div>
       </form>
     </div>
-    <div class="col-xs-6" style="width: 30%;margin: auto; margin-top: 5%;">
+    <div class="col-xs-6" style="width: 30%;margin: auto; margin-top: 5%;max-height: 650px;overflow: auto;">
       <ul *ngFor="let array of userInterface; let i = index" class="editUserLink">
         <a (click)="editUser(array)">
           <li>ID: {{array[0] }}</li>

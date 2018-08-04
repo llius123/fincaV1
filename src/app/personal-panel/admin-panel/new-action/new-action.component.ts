@@ -20,7 +20,6 @@ export class NewActionComponent implements OnInit, OnDestroy {
   titulo = "";
 
   routeSubscribe: Subscription;
-  newUserSubs: Subscription;
 
   newUser = false;
   newActa = false;
@@ -38,13 +37,15 @@ export class NewActionComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.routeSubscribe.unsubscribe();
-    this.newUserSubs.unsubscribe()
   }
 
-  getAllTipeUsers() {}
-
-  goBack() {
-    this.route.navigate(["/personal_panel/admin_panel"]);
+  getAllTipeUsers() {
+    this.sqlService.allTypesUsuarios().subscribe(params => {this.allTipesUsers(params)});
+  }
+  allTipesUsers(data: any) {
+    for (let q of data) {
+      this.allTipeUsers.push([q.id, q.titulo]);
+    }
   }
 
   getUrl() {
@@ -74,10 +75,12 @@ export class NewActionComponent implements OnInit, OnDestroy {
 
   startNewUserData() {
     this.dataUser = new FormGroup({
+      id: new FormControl({ value: null, disabled: true }, Validators.required),
       nombre: new FormControl(null, Validators.required),
       telefono: new FormControl(null, Validators.required),
       puerta: new FormControl(null, Validators.required),
       tipo: new FormControl(null, Validators.required),
+      tipo1: new FormControl(null),
       usuario: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required)
     });
@@ -105,6 +108,7 @@ export class NewActionComponent implements OnInit, OnDestroy {
   editUser(data: any) {
     this.editUserValidator = true;
     this.dataUser.patchValue({
+      id: data[0],
       nombre: data[1],
       telefono: data[2],
       puerta: data[3],
@@ -115,7 +119,7 @@ export class NewActionComponent implements OnInit, OnDestroy {
   }
 
   addNewUser() {
-    this.newUserSubs = this.sqlService
+    this.sqlService
       .newUser(
         this.dataUser.get("nombre").value,
         this.dataUser.get("telefono").value,
@@ -124,10 +128,40 @@ export class NewActionComponent implements OnInit, OnDestroy {
         this.dataUser.get("usuario").value,
         this.dataUser.get("password").value
       )
-      .subscribe();
+      .subscribe(() => {
+        this.startNewUserData();
+      });
+    this.editUserValidator = false;
   }
 
-  cancellButton() {
+  editUserDatabase() {
+    this.sqlService
+      .editUser(
+        this.dataUser.get("nombre").value,
+        this.dataUser.get("telefono").value,
+        this.dataUser.get("puerta").value,
+        this.dataUser.get("tipo").value,
+        this.dataUser.get("usuario").value,
+        this.dataUser.get("password").value,
+        this.dataUser.get("id").value
+      )
+      .subscribe(() => {
+        this.startNewUserData();
+      });
+    this.editUserValidator = false;
+  }
+
+  goBackButton() {
     this.route.navigate(["/personal_panel/admin_panel"]);
+  }
+  cancellButton() {
+    this.dataUser.reset();
+    this.editUserValidator = false;
+  }
+  deleteUserDatabase() {
+    this.sqlService.deleteUser(this.dataUser.get("id").value).subscribe(() => {
+      this.startNewUserData();
+    });
+    this.editUserValidator = false;
   }
 }
