@@ -1,10 +1,11 @@
-import { map } from 'rxjs/operators';
+import { map } from "rxjs/operators";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { SqlService } from "../../extra/sql.service";
 import { Response } from "@angular/http";
 import { Subscriber, Subscription } from "rxjs";
+import { GenericClass } from "../../extra/generic.services";
 
 @Component({
   selector: "app-new-action",
@@ -15,7 +16,8 @@ export class NewActionComponent implements OnInit, OnDestroy {
   constructor(
     private route: Router,
     private router: ActivatedRoute,
-    private sqlService: SqlService
+    private sqlService: SqlService,
+    private genericClass: GenericClass
   ) {}
 
   titulo = "";
@@ -29,7 +31,11 @@ export class NewActionComponent implements OnInit, OnDestroy {
   editUserValidator = false;
 
   dataUser: FormGroup;
+  dataActa: FormGroup;
+
   userInterface = [];
+  allActasArray = [];
+
   allTipeUsers = [];
 
   ngOnInit() {
@@ -41,7 +47,9 @@ export class NewActionComponent implements OnInit, OnDestroy {
   }
 
   getAllTipeUsers() {
-    this.sqlService.allTypesUsuarios().subscribe(params => {this.allTipesUsers(params)});
+    this.sqlService.allTypesUsuarios().subscribe(params => {
+      this.allTipesUsers(params);
+    });
   }
   allTipesUsers(data: any) {
     for (let q of data) {
@@ -64,6 +72,8 @@ export class NewActionComponent implements OnInit, OnDestroy {
         break;
       case "newActa":
         this.newActa = true;
+        this.titulo = "Editar o crear una nueva acta";
+        this.startNewActaData();
         break;
       case "newGasto":
         this.newGasto = true;
@@ -72,6 +82,17 @@ export class NewActionComponent implements OnInit, OnDestroy {
         this.newIncidencia = true;
         break;
     }
+  }
+  startNewActaData() {
+    this.dataActa = new FormGroup({
+      id: new FormControl({ value: null, disabled: true }),
+      fecha: new FormControl(null),
+      descripcion: new FormControl(null),
+      textocompleto: new FormControl(null)
+    });
+    this.sqlService.allActas().subscribe(data => {
+      this.listAllActas(data);
+    });
   }
 
   startNewUserData() {
@@ -90,6 +111,18 @@ export class NewActionComponent implements OnInit, OnDestroy {
     });
   }
 
+  listAllActas(data: any) {
+    this.allActasArray = [];
+    for (let q of data) {
+      this.allActasArray.push([
+        q.id,
+        this.genericClass.transformDate(q.fecha),
+        q.descripcion,
+        q.textoCompleto
+      ]);
+    }
+  }
+
   listAllUsers(data: any) {
     this.userInterface = [];
     for (let q of data) {
@@ -106,48 +139,89 @@ export class NewActionComponent implements OnInit, OnDestroy {
   }
 
   editUser(data: any) {
-    this.editUserValidator = true;
-    this.dataUser.patchValue({
-      id: data[0],
-      nombre: data[1],
-      telefono: data[2],
-      puerta: data[3],
-      tipo: data[4],
-      usuario: data[5],
-      password: data[6]
-    });
+    if (this.newUser === true) {
+      this.editUserValidator = true;
+      this.dataUser.patchValue({
+        id: data[0],
+        nombre: data[1],
+        telefono: data[2],
+        puerta: data[3],
+        tipo: data[4],
+        usuario: data[5],
+        password: data[6]
+      });
+    } else if (this.newActa == true) {
+      this.editUserValidator = true;
+      this.dataActa.patchValue({
+        id: data[0],
+        fecha: data[1],
+        descripcion: data[2],
+        textocompleto: data[3]
+      });
+    }
   }
 
   addNewUser() {
-    this.sqlService
-      .newUser(
-        this.dataUser.get("nombre").value,
-        this.dataUser.get("telefono").value,
-        this.dataUser.get("puerta").value,
-        this.dataUser.get("tipo").value,
-        this.dataUser.get("usuario").value,
-        this.dataUser.get("password").value
-      )
-      .subscribe(() => {
-        this.startNewUserData();
-      });
+    if (this.newUser === true) {
+      this.sqlService
+        .newUser(
+          this.dataUser.get("nombre").value,
+          this.dataUser.get("telefono").value,
+          this.dataUser.get("puerta").value,
+          this.dataUser.get("tipo").value,
+          this.dataUser.get("usuario").value,
+          this.dataUser.get("password").value
+        )
+        .subscribe(() => {
+          this.startNewUserData();
+        });
+    } else if (this.newActa === true) {
+      const date = this.genericClass.insertDateDatabase(
+        this.dataActa.get("fecha").value
+      );
+      this.sqlService
+        .newActa(
+          date,
+          this.dataActa.get("descripcion").value,
+          this.dataActa.get("textocompleto").value
+        )
+        .subscribe(() => {
+          this.startNewActaData();
+        });
+    }
     this.editUserValidator = false;
   }
 
   editUserDatabase() {
-    this.sqlService
-      .editUser(
-        this.dataUser.get("nombre").value,
-        this.dataUser.get("telefono").value,
-        this.dataUser.get("puerta").value,
-        this.dataUser.get("tipo").value,
-        this.dataUser.get("usuario").value,
-        this.dataUser.get("password").value,
-        this.dataUser.get("id").value
-      )
-      .subscribe(() => {
-        this.startNewUserData();
-      });
+    if (this.newUser === true) {
+      this.sqlService
+        .editUser(
+          this.dataUser.get("nombre").value,
+          this.dataUser.get("telefono").value,
+          this.dataUser.get("puerta").value,
+          this.dataUser.get("tipo").value,
+          this.dataUser.get("usuario").value,
+          this.dataUser.get("password").value,
+          this.dataUser.get("id").value
+        )
+        .subscribe(() => {
+          this.startNewUserData();
+        });
+    } else if (this.newActa === true) {
+      const date = this.genericClass.insertDateDatabase(
+        this.dataActa.get("fecha").value
+      );
+      this.sqlService
+        .editActa(
+          date,
+          this.dataActa.get("descripcion").value,
+          this.dataActa.get("textocompleto").value,
+          this.dataActa.get("id").value
+        )
+        .subscribe(data => {
+          this.startNewActaData();
+        });
+    }
     this.editUserValidator = false;
   }
 
@@ -155,13 +229,27 @@ export class NewActionComponent implements OnInit, OnDestroy {
     this.route.navigate(["/personal_panel/admin_panel"]);
   }
   cancellButton() {
-    this.dataUser.reset();
+    if (this.newUser === true) {
+      this.dataUser.reset();
+    } else if (this.newActa === true) {
+      this.dataActa.reset();
+    }
     this.editUserValidator = false;
   }
   deleteUserDatabase() {
-    this.sqlService.deleteUser(this.dataUser.get("id").value).subscribe(() => {
-      this.startNewUserData();
-    });
+    if (this.newUser === true) {
+      this.sqlService
+        .deleteUser(this.dataUser.get("id").value)
+        .subscribe(() => {
+          this.startNewUserData();
+        });
+    } else if (this.newActa === true) {
+      this.sqlService
+        .deleteActa(this.dataActa.get("id").value)
+        .subscribe(() => {
+          this.startNewActaData();
+        });
+    }
     this.editUserValidator = false;
   }
 }

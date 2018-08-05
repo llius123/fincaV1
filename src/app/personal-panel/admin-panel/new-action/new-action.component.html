@@ -76,7 +76,43 @@
 
 <div class="container" *ngIf="newActa">
   <div class="row">
-    new acta
+    <div class="col-xs-4" style="width: 30%;margin: auto; margin-top: 5%;">
+      <form [formGroup]="dataActa">
+        <div class="form-group">
+          <label>ID</label>
+          <input class="form-control" type="text" formControlName="id">
+        </div>
+        <div class="form-group">
+          <label>Fecha</label>
+          <input class="form-control" type="text" placeholder="00-00-0000" formControlName="fecha">
+          <div *ngIf="dataActa.get('fecha').errors?.required && editUserValidator" style="color: red; margin-top: 5px;font-weight: bold">Fecha no puede estar en blanco</div>
+        </div>
+        <div class="form-group">
+          <label>Descripcion:</label>
+          <input formControlName="descripcion" type="text" class="form-control">
+          <div *ngIf="dataActa.get('descripcion').errors?.required && editUserValidator" style="color: red; margin-top: 5px;font-weight: bold">Descripcion no puede estar en blanco</div>
+        </div>
+        <div class="form-group">
+          <label>Texto completo:</label>
+          <textarea formControlName="textocompleto" type="text" class="form-control" rows="3"></textarea>
+          <div *ngIf="dataActa.get('textocompleto').errors?.required && editUserValidator" style="color: red; margin-top: 5px;font-weight: bold">Descripcion no puede estar en blanco</div>
+        </div>
+        <button type="button" class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
+        <button style="margin-left: 3%" type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
+        <button style="margin-left: 3%" type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
+        <button style="float: right" type="button" class="btn btn-outline-danger hvr-grow" (click)="cancellButton()">Cancelar</button>
+      </form>
+    </div>
+    <div class="col-xs-8" style="width: 30%;margin: auto; margin-top: 5%;max-height: 443px;overflow: auto;">
+      <ul *ngFor="let array of allActasArray; let i = index" class="editUserLink">
+        <a (click)="editUser(array)">
+          <li>ID: {{array[0] }}</li>
+          <li>Fecha: {{array[1] }}</li>
+          <li>Descripcion: {{array[2] }}</li>
+          <li><p style="max-height: 150px;overflow: auto;">Texto Completo: {{ array[3] }}</p></li>
+        </a>
+      </ul>
+    </div>
   </div>
 </div>
 

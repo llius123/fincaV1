@@ -63,12 +63,12 @@ app.delete("/deleteUser/:id", function(req, res) {
   connection.query(
     "delete from usuario where id = ?",
     [req.params.id],
-    function (error, result) {
+    function(error, result) {
       if (error) console.log(error);
       res.end(res.json(result));
     }
-  )
-})
+  );
+});
 
 app.get("/type/:number", function(req, res) {
   connection.query(
@@ -170,14 +170,52 @@ app.put("/newIncidencia/:titulo&:descripcion", function(req, res) {
   );
 });
 
+app.post("/newActa/:fecha&:descripcion&:textoCompleto", function(req, res) {
+  connection.query(
+    "insert into actas set fecha = ?, textoCompleto = ?, descripcion = ?",
+    [req.params.fecha, req.params.textoCompleto, req.params.descripcion],
+    function(error, result) {
+      if (error) console.log(error);
+      res.end(res.json(result));
+    }
+  );
+});
+
+app.put("/editActa/:fecha&:descripcion&:textoCompleto&:id", function (req, res) {
+  connection.query(
+    "update actas set fecha = ?, descripcion = ?, textoCompleto = ? where id = ?",
+    [
+      req.params.fecha,
+      req.params.descripcion,
+      req.params.textoCompleto,
+      req.params.id
+    ],
+    function(error, result) {
+      if (error) throw error;
+      res.end(res.json(result));
+    }
+  );
+});
+
+app.delete("/deleteActa/:id", function(req, res){
+  connection.query(
+    "delete from actas where id = ?",
+    [req.params.id],
+    function (error, result) {
+      if (error) console.log(error);
+      res.end(res.json(result));
+    }
+  )
+})
+
 app.get("/allTypesGastos", function(req, res) {
   connection.query("select * from tipogastos ", function(error, result) {
     if (error) console.log(error);
     res.end(res.json(result));
   });
 });
-app.get("/allTypeUser", function (req, res) {
-  connection.query("select * from tipousuario ", function (error, result) {
+app.get("/allTypeUser", function(req, res) {
+  connection.query("select * from tipousuario ", function(error, result) {
     if (error) console.log(error);
     res.end(res.json(result));
   });
