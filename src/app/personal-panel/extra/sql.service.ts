@@ -144,6 +144,24 @@ export class SqlService {
     return this.http2.get(url);
   }
 
+  //Nuevo gasto
+  newGasto(tipo_id: number, recepcion: string, factura: string, descripcion: string) {
+    const url = this.base + "/newGastos/" + tipo_id + '&' + recepcion + '&' + factura + '&' + descripcion;
+    return this.http2.post(url, recepcion);
+  }
+
+  //Eliminar Gasto
+  deleteGasto(id: number) {
+    const url = this.base + "/deleteGastos/" + id;
+    return this.http2.delete(url);
+  }
+
+  //Edit gasto
+  editGasto(tipo_id: number, recepcion: string, factura: string, descripcion: string, id: number){
+    const url = this.base + "/editGastos/" + tipo_id + '&' + recepcion + '&' + factura + '&' + descripcion + '&' + id;
+    return this.http2.put(url, recepcion)
+  }
+
   //Nueva incidencia
   newIncidencia(titulo: string, descripcion: string) {
     const url = this.base + "/newIncidencia/" + titulo + "&" + descripcion;
