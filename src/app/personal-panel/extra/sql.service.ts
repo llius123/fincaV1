@@ -150,6 +150,8 @@ export class SqlService {
     return this.http2.post(url, recepcion);
   }
 
+  
+
   //Eliminar Gasto
   deleteGasto(id: number) {
     const url = this.base + "/deleteGastos/" + id;
@@ -162,10 +164,26 @@ export class SqlService {
     return this.http2.put(url, recepcion)
   }
 
+  //Todas las incidencias
+  allIncidencias(){
+    const url = this.base + "/allIncidencia";
+    return this.http2.get(url)
+  }
   //Nueva incidencia
   newIncidencia(titulo: string, descripcion: string) {
     const url = this.base + "/newIncidencia/" + titulo + "&" + descripcion;
     return this.http.put(url, JSON.stringify(titulo));
+  }
+  //editar incidencia
+  editIncidencia(id: number, titulo: string, descripcion: string) {
+    const url = this.base + "/editIncidencia/" + id + '&' + titulo + '&' + descripcion;
+    return this.http2.put(url, titulo);
+  }
+
+  //Delete incidencia
+  deleteIncidencia(id: number){
+    const url = this.base + "/deleteIncidencia/"+id;
+    return this.http2.delete(url);
   }
 
   //Todos los tipos de gastos

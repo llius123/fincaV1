@@ -182,10 +182,10 @@
         </div>
         <div class="form-group">
           <label>Descripcion:</label>
-          <input formControlName="descripcion" type="text" class="form-control">
+          <textarea formControlName="descripcion" type="text" class="form-control" rows="3"></textarea>
           <div *ngIf="dataIncidencia.get('descripcion').errors?.required && editUserValidator" style="color: red; margin-top: 5px;font-weight: bold">Descripcion no puede estar en blanco</div>
         </div>
-        <button type="button" class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
+        <button *ngIf="buttonVisible()" type="button" class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
         <button style="margin-left: 3%" type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
         <button style="margin-left: 3%" type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
         <button style="float: right" type="button" class="btn btn-outline-danger hvr-grow" (click)="cancellButton()">Cancelar</button>
@@ -196,7 +196,7 @@
         <a (click)="editUser(array)">
           <li>ID: {{array[0] }}</li>
           <li>Titulo: {{array[1] }}</li>
-          <li>Descripcion recepcion: {{array[2] }}</li>
+          <li>Descripcion : {{array[2] }}</li>
         </a>
       </ul>
     </div>

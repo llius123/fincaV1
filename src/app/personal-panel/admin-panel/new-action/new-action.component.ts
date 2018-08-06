@@ -114,6 +114,8 @@ export class NewActionComponent implements OnInit, OnDestroy {
       case this.incidencia:
         this.newIncidencia = true;
         this.titulo = "Editar o borrar nuevas incidencias";
+        this.actionType = action;
+        this.startNewData();
         break;
     }
   }
@@ -155,6 +157,16 @@ export class NewActionComponent implements OnInit, OnDestroy {
         });
         this.sqlService.allGastos().subscribe(data => {
           this.listAllGastos(data);
+        });
+        break;
+      case this.incidencia:
+        this.dataIncidencia = new FormGroup({
+          id: new FormControl({ value: null, disabled: true }),
+          titulo: new FormControl(null),
+          descripcion: new FormControl(null)
+        });
+        this.sqlService.allIncidencias().subscribe(data => {
+          this.listAllIncidencias(data);
         });
         break;
     }
@@ -200,6 +212,13 @@ export class NewActionComponent implements OnInit, OnDestroy {
     }
   }
 
+  listAllIncidencias(data: any) {
+    this.allIncidenciaArray = [];
+    for (let q of data) {
+      this.allIncidenciaArray.push([q.id, q.titulo, q.descripcion]);
+    }
+  }
+
   editUser(data: any) {
     switch (this.actionType) {
       case this.user:
@@ -234,6 +253,12 @@ export class NewActionComponent implements OnInit, OnDestroy {
         });
         break;
       case this.incidencia:
+        this.editUserValidator = true;
+        this.dataIncidencia.patchValue({
+          id: data[0],
+          titulo: data[1],
+          descripcion: data[2]
+        });
         break;
     }
   }
@@ -285,8 +310,6 @@ export class NewActionComponent implements OnInit, OnDestroy {
             console.log(data);
             this.startNewData();
           });
-        break;
-      case this.incidencia:
         break;
     }
   }
@@ -343,6 +366,15 @@ export class NewActionComponent implements OnInit, OnDestroy {
         this.editUserValidator = false;
         break;
       case this.incidencia:
+        this.sqlService
+          .editIncidencia(
+            this.dataIncidencia.get("id").value,
+            this.dataIncidencia.get("titulo").value,
+            this.dataIncidencia.get("descripcion").value
+          )
+          .subscribe(data => {
+            this.startNewData();
+          });
         this.editUserValidator = false;
         break;
     }
@@ -359,6 +391,8 @@ export class NewActionComponent implements OnInit, OnDestroy {
         this.editUserValidator = false;
         break;
       case this.gasto:
+        this.dataGastos.reset();
+        this.editUserValidator = false;
         break;
       case this.incidencia:
         break;
@@ -388,12 +422,30 @@ export class NewActionComponent implements OnInit, OnDestroy {
           .subscribe(() => {
             this.startNewData();
           });
+        this.editUserValidator = false;
         break;
       case this.incidencia:
+        this.sqlService
+          .deleteIncidencia(this.dataIncidencia.get("id").value)
+          .subscribe(() => {
+            this.startNewData();
+          });
+        this.editUserValidator = false;
         break;
     }
   }
   goBackButton() {
     this.route.navigate(["/personal_panel/admin_panel"]);
+  }
+
+  buttonVisible() {
+    let result: boolean = true;
+    switch (this.actionType) {
+      case this.incidencia:
+      console.log('hola')
+        result = false;
+        break;
+    }
+    return result
   }
 }

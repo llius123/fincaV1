@@ -208,6 +208,15 @@ app.delete("/deleteGastos/:id", function (req, res) {
   });
 });
 
+app.get("/allIncidencia", function(req, res) {
+  connection.query(
+    "select * from incidencias order by id",
+    function (error, result) {
+      if (error) console.log(error);
+      res.end(res.json(result));
+    }
+  )
+})
 app.put("/newIncidencia/:titulo&:descripcion", function(req, res) {
   connection.query(
     "insert into incidencias set titulo=?, descripcion=?",
@@ -218,6 +227,28 @@ app.put("/newIncidencia/:titulo&:descripcion", function(req, res) {
     }
   );
 });
+
+app.put("/editIncidencia/:id&:titulo&:descripcion", function(req, res) {
+  connection.query(
+    "update incidencias set titulo = ?, descripcion = ? where id = ?",
+    [req.params.titulo,req.params.descripcion,req.params.id],
+    function (error, result) {
+      if (error) console.log(error);
+      res.end(res.json(result));
+    }
+  );
+})
+
+app.delete("/deleteIncidencia/:id", function(req, res) {
+  connection.query(
+    "delete from incidencias where id = ?",
+    [req.params.id],
+    function (error, result) {
+      if (error) console.log(error);
+      res.end(res.json(result));
+    }
+  )
+})
 
 app.post("/newActa/:fecha&:descripcion&:textoCompleto", function(req, res) {
   connection.query(
