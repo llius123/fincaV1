@@ -14,6 +14,25 @@ Usar para los http request el private http2: HttpClient porque los json que devu
 faciles de usar y de jugar con ellos(3-8-2018)
 --------------------------------------------------------------------------------------------------------
 
+V0.1.0
+
++ Validaciones correctas, que no te deje hacer nada a menos que este bien escrito el texto en los inputs
+
++ Mejorar el css
+
++ Mejorar el codigo
+    + Usar observers
+    + Mirar lo de .subscribe porque me parece super ineficiente
+    + Mejorar los put/post/delete y buscar info por lo de http2(HttpClient)
+
++ Añadir mas funcionalidades
+
++ Mejorar la base de datos
+
+--------------------------------------------------------------------------------------------------------
+
+V0.0.1
+
 + Modificar el css de los hover ya que la licencia gratis no puedo usar la pagina css que me descarge
 ai no que tengo que copiar su codigo en mi clase css
 
@@ -33,9 +52,9 @@ ai no que tengo que copiar su codigo en mi clase css
     * Crear nuevos usuarios(3-8-2018)
     * Editar usuarios(3-8-2018)
     * Eliminar usuarios(3-8-2018)
-    + Crear nuevas actas y borrar las ya existentes
-    + Crear y borrar gastos
-    + Borrar incidencias de la base de datos
+    * Crear nuevas actas y borrar las ya existentes(6-8-2018)
+    * Crear y borrar gastos(6-8-2018)
+    * Borrar incidencias de la base de datos(6-8-2018)
     
 * Validaciones mejoradas con la propiedad .errors?. lo que sea, required, pattern, 
 maxlenght etc...(20-7-2018)

@@ -21,7 +21,7 @@ o tenia que utilizar extensiones para que funcionara.<br />
 ·jquery(npm)<br />
 ·popper.js(npm)<br />
 <br />
-Postam(antes usaba insomnia pero hay veces que con determinados caracteres no funciona asi 
+·Postman(antes usaba insomnia pero hay veces que con determinados caracteres no funciona asi 
 que he decidido dejar de usar insomnia por Postman)
 <br />
 ·DIA(Para hacer diagramas UML y diagramas de bases de datos)
@@ -33,5 +33,10 @@ que he decidido dejar de usar insomnia por Postman)
 ![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/3.png)
 ![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/4.png)
 ![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/5.png)
+![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/6.png)
+![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/7.png)
+![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/8.png)
+![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/9.png)
+![alt text](https://raw.githubusercontent.com/llius123/fincaV1/master/diagram/img/10.png)
 
 ## Leer TODO.txt para mas info
