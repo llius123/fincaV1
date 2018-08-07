@@ -1,5 +1,5 @@
 #gridBox {
-  background-color: red;
+  background-color: lightblue;
   width: 26%;
   margin-left: 13%;
   margin-top: 5%;
@@ -22,4 +22,8 @@
 #descripcion {
     padding-left: 10%;
     padding-bottom: 10%;
+}
+
+ #gridBox:hover {
+  background-color: blue;
 }

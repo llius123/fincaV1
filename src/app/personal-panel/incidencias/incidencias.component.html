@@ -1,18 +1,18 @@
 <form class="form" [formGroup]="dataForm" style="margin-top: 25px;">
   <div class="input-group mb-3" id="divTitulo" style="width: 69%;">
     <div class="input-group-prepend" style="width: 38%;">
-      <span class="input-group-text" id="basic-addon3" style="width: 100%;border: 1px solid black">Titulo de la incidencia</span>
+      <span class="input-group-text" id="basic-addon3" style="width: 100%;border: 1px solid black;font-weight: bold">Titulo de la incidencia</span>
     </div>
     <input style="border: 1px solid black" type="text" class="form-control  hvr-border-fade" aria-describedby="basic-addon3" formControlName="title">
-    <div *ngIf="dataForm.get('title').errors?.required " style="color: red; margin-top: 5px;font-weight: bold">Titulo no puede estar en blanco</div>
+    <div *ngIf="dataForm.get('title').errors?.required && dataForm.get('description').value != null" style="color: red; margin-top: 5px;font-weight: bold">Titulo no puede estar en blanco</div>
   </div>
   <div class="input-group mb-3" id="divTitulo" style="width: 69%;">
     <div class="input-group-prepend" style="width: 38%;">
-      <span class="input-group-text" id="basic-addon3" style="width: 100%;border: 1px solid black">Descripcion de la incidencia</span>
+      <span class="input-group-text" id="basic-addon3" style="width: 100%;border: 1px solid black;font-weight: bold">Descripcion de la incidencia</span>
     </div>
     <textarea style="border: 1px solid black" class="form-control hvr-border-fade" aria-label="With textarea" formControlName="description"></textarea>
-    <div *ngIf="dataForm.get('description').errors?.required " style="color: red; margin-top: 5px;font-weight: bold">Descripcion no puede estar en blanco</div>
+    <div *ngIf="dataForm.get('description').errors?.required && dataForm.get('description').value != null " style="color: red; margin-top: 5px;font-weight: bold">Descripcion no puede estar en blanco</div>
   </div>
 </form>
-<button class="btn btn-outline-success" role="button" (click)="saveIncidencia()" style="margin-left: 47%;">Enviar</button>
+<button [disabled]="!dataForm.valid" class="btn btn-outline-success" role="button" (click)="saveIncidencia()" style="margin-left: 47%;">Enviar</button>
 <button class="btn btn-outline-danger" role="button" (click)="clearInputs()" style="margin-left: 13px;">Cancelar</button>
