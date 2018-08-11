@@ -1,6 +1,6 @@
 {
   "name": "finca-v1",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "client": "ng serve",
     "server": "nodemon ./server/database.js",

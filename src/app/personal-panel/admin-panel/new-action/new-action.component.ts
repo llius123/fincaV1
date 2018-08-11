@@ -28,6 +28,11 @@ export class NewActionComponent implements OnInit, OnDestroy {
   titulo = "";
   actionType = "";
 
+  patternOnlyNumber = "[0-9]*";
+  patternOnlyCharacters = "[a-zA-Z]*";
+  patternDate =
+    "(^ (((0[1 - 9] | 1[0 - 9] | 2[0 - 8])[/](0[1-9]|1[012]))|((29|30|31)[/](0[13578]|1[02]))|((29|30)[/](0[4,6,9]|11)))[/](19|[2-9][0-9])dd$)|(^29[/]02[/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)";
+
   routeSubscribe: Subscription;
 
   newUser = false;
@@ -133,92 +138,93 @@ export class NewActionComponent implements OnInit, OnDestroy {
         });
 
         this.sqlService.allUsers().subscribe(data => {
-          this.listAllUsers(data);
+          this.listAll(data);
         });
         break;
       case this.acta:
         this.dataActa = new FormGroup({
           id: new FormControl({ value: null, disabled: true }),
-          fecha: new FormControl(null),
-          descripcion: new FormControl(null),
-          textocompleto: new FormControl(null)
+          fecha: new FormControl(null, [Validators.required]),
+          descripcion: new FormControl(null, Validators.required),
+          textocompleto: new FormControl(null, Validators.required)
         });
         this.sqlService.allActas().subscribe(data => {
-          this.listAllActas(data);
+          this.listAll(data);
         });
         break;
       case this.gasto:
         this.dataGastos = new FormGroup({
           id: new FormControl({ value: null, disabled: true }),
-          tipo: new FormControl(null),
-          recepcion: new FormControl(null),
-          factura: new FormControl(null),
-          descripcion: new FormControl(null)
+          tipo: new FormControl(null, Validators.required),
+          recepcion: new FormControl(null, Validators.required),
+          factura: new FormControl(null, Validators.required),
+          descripcion: new FormControl(null, Validators.required)
         });
         this.sqlService.allGastos().subscribe(data => {
-          this.listAllGastos(data);
+          this.listAll(data);
         });
         break;
       case this.incidencia:
         this.dataIncidencia = new FormGroup({
           id: new FormControl({ value: null, disabled: true }),
-          titulo: new FormControl(null),
-          descripcion: new FormControl(null)
+          titulo: new FormControl(null, Validators.required),
+          descripcion: new FormControl(null, Validators.required)
         });
         this.sqlService.allIncidencias().subscribe(data => {
-          this.listAllIncidencias(data);
+          this.listAll(data);
         });
         break;
     }
   }
 
-  listAllActas(data: any) {
-    this.allActasArray = [];
-    for (let q of data) {
-      this.allActasArray.push([
-        q.id,
-        this.genericClass.transformDate(q.fecha),
-        q.descripcion,
-        q.textoCompleto
-      ]);
+  listAll(data: any) {
+    switch (this.actionType) {
+      case this.user:
+        this.userInterface = [];
+        for (let q of data) {
+          this.userInterface.push([
+            q.id,
+            q.nombre,
+            q.telefono,
+            q.puerta,
+            q.titulo,
+            q.usuario,
+            q.password
+          ]);
+        }
+        break;
+      case this.acta:
+        this.allActasArray = [];
+        for (let q of data) {
+          this.allActasArray.push([
+            q.id,
+            this.genericClass.transformDate(q.fecha),
+            q.descripcion,
+            q.textoCompleto
+          ]);
+        }
+        break;
+      case this.gasto:
+        this.allGastosArray = [];
+        for (let q of data) {
+          this.allGastosArray.push([
+            q.id,
+            q.tipo,
+            this.genericClass.transformDate(q.fecha_recepcion),
+            this.genericClass.transformDate(q.fecha_factura),
+            q.descripcion
+          ]);
+        }
+        break;
+      case this.incidencia:
+        this.allIncidenciaArray = [];
+        for (let q of data) {
+          this.allIncidenciaArray.push([q.id, q.titulo, q.descripcion]);
+        }
+        break;
     }
   }
-
-  listAllUsers(data: any) {
-    this.userInterface = [];
-    for (let q of data) {
-      this.userInterface.push([
-        q.id,
-        q.nombre,
-        q.telefono,
-        q.puerta,
-        q.titulo,
-        q.usuario,
-        q.password
-      ]);
-    }
-  }
-
-  listAllGastos(data: any) {
-    this.allGastosArray = [];
-    for (let q of data) {
-      this.allGastosArray.push([
-        q.id,
-        q.tipo,
-        this.genericClass.transformDate(q.fecha_recepcion),
-        this.genericClass.transformDate(q.fecha_factura),
-        q.descripcion
-      ]);
-    }
-  }
-
-  listAllIncidencias(data: any) {
-    this.allIncidenciaArray = [];
-    for (let q of data) {
-      this.allIncidenciaArray.push([q.id, q.titulo, q.descripcion]);
-    }
-  }
-
+  
   editUser(data: any) {
     switch (this.actionType) {
       case this.user:
@@ -307,7 +313,6 @@ export class NewActionComponent implements OnInit, OnDestroy {
             this.dataGastos.get("descripcion").value
           )
           .subscribe(data => {
-            console.log(data);
             this.startNewData();
           });
         break;
@@ -395,6 +400,8 @@ export class NewActionComponent implements OnInit, OnDestroy {
         this.editUserValidator = false;
         break;
       case this.incidencia:
+        this.dataIncidencia.reset();
+        this.editUserValidator = false;
         break;
     }
   }
@@ -442,10 +449,9 @@ export class NewActionComponent implements OnInit, OnDestroy {
     let result: boolean = true;
     switch (this.actionType) {
       case this.incidencia:
-      console.log('hola')
         result = false;
         break;
     }
-    return result
+    return result;
   }
 }

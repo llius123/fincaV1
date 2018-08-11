@@ -17,11 +17,23 @@ input:hover {
   background-color: lightblue;
 }
 .editUserLink:hover {
-    background-color: lightblue;
+  background-color: lightblue;
 }
 
-.editUserLink{
+.editUserLink {
   border: 1px solid black;
   border-radius: 10px;
   margin-right: 10px;
+}
+
+button .disabled {
+  cursor: not-allowed;
+}
+
+#titulo {
+  margin: auto;
+  padding-left: 30%;
+  font-weight: bold;
+  font-size: x-large;
+  font-style: normal;
 }
