@@ -96,6 +96,7 @@ export class UsersComponent implements OnInit {
       nombre: this.dataUser.get("nombre").value,
       telefono: this.dataUser.get("telefono").value,
       puerta: this.dataUser.get("puerta").value,
+      titulo: this.loggedService.getData().admin,
       usuario: this.dataUser.get("usuario").value,
       pass: this.dataUser.get("password").value
     };

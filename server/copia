@@ -1,0 +1,93 @@
+
+app.get("/type/:number", function(req, res) {
+  connection.query(
+    "select titulo from tipo where id=?",
+    [req.params.number],
+    function(error, result) {
+      if (error) console.log(error);
+      res.end(res.json(result));
+    }
+  );
+});
+
+app.get("/test/:id&:name", function(req, res) {
+  connection.query(
+    "select * from usuario where id=? and nombre=?",
+    [req.params.id, req.params.name],
+    function(error, result) {
+      if (error) console.log(error);
+      res.end(res.json(result));
+    }
+  );
+});
+
+ 
+// app.put("/updateUser/:id&:name&:phone&:door&:type_id&:user&:pas", function(req,res) {
+//   connection.query(
+//     "update Usuario where id = ? and nombre = ? and telefono = ? and puerta = ? and tipo_id = ? and usuario = ? and password = ? ",
+//         [
+//       req.params.id,
+//       req.params.name,
+//       req.params.phone,
+//       req.params.door,
+//       req.params.type_id,
+//       req.params.user,
+//       req.params.pas
+//     ],
+//     function(error, result){
+//       console.log(error);
+//     }
+//   );
+// });
+// app.post("/updateUser/:id/:name/:phone/:type_id/:user/:pas", function (req, res){
+// connection.query(
+//   "insert into Usuario(id,nombre,telefono,tipo_id,usuario,password) values(?,?,?,?,?,?)"
+// )
+// })
+
+// //rest api to get all customers
+// app.get('/test', function (req, res) {
+//    connection.query('select * from categoria', function (error, result, fields) {
+// 	  if (error) throw error;
+// if (error) console.log(error); //
+// res.end(JSON.stringify(result));
+// // 	});
+// });
+// //rest api to get a single customer data
+// app.get('/customer/:id', function (req, res) {
+//    connection.query('select * from customers where Id=?', [req.params.id], function (error, result, fields) {
+// 	  if (error) throw error;
+// if (error) console.log(error); //
+// res.end(JSON.stringify(result));
+// 	});
+// });
+
+// //rest api to create a new customer record into mysql database
+// app.post('/customer', function (req, res) {
+//    const params  = req.body;
+//    console.log(params);
+//    connection.query('INSERT INTO customer SET ?', params, function (error, result, fields) {
+// 	  if (error) throw error;
+// if (error) console.log(error); //
+// res.end(JSON.stringify(result));
+// 	});
+// });
+
+// //rest api to update record into mysql database
+// app.put('/customer', function (req, res) {
+//    connection.query('UPDATE `customer` SET `Name`=?,`Address`=?,`Country`=?,`Phone`=? where `Id`=?', [req.body.Name,req.body.Address, req.body.Country, req.body.Phone, req.body.Id], function (error, result, fields) {
+// 	  if (error) throw error;
+// if (error) console.log(error); //
+// res.end(JSON.stringify(result));
+// // 	});
+// });
+
+// //rest api to delete record from mysql database
+// app.delete('/customer', function (req, res) {
+//    console.log(req.body);
+//    connection.query('DELETE FROM `customer` WHERE `Id`=?', [req.body.Id], function (error, result, fields) {
+// 	  if (error) throw error;
+// if (error) console.log(error); //
+// res.end("Record has been deleted!");
+// 	});
+// });
