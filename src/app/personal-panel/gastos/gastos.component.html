@@ -6,7 +6,7 @@
       </div>
       <select class="custom-select hvr-back-pulse" #optionSelected id="borderInput">
         <option value="0">Selecciona...</option>
-        <option *ngFor="let data of arrayGastos" value="{{data[1]}}">{{data[1]}}</option>
+        <option *ngFor="let data of arrayGastos[0];let i = index" value="{{data.id}}">{{data.tipo}}</option>
       </select>
       <div class="input-group-prepend" style="margin-left: 10px">
         <label class="input-group-text" for="inputGroupSelect01" id="borderInput">Ordernar</label>

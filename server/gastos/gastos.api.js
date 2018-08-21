@@ -68,3 +68,30 @@ exports.deleteGasto = function (app) {
         });
     });
 }
+
+exports.gastosByType = function (app) {
+    app.get("/gastosByType/:tipo/:order", function(req, res) {
+        const querys = "";
+        console.log(req.params.order);
+        if (req.params.order == 1) {
+          this.querys =
+            "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.tipo_id, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and g.tipo_id ='" +
+            req.params.tipo +
+            "' order by g.fecha_recepcion desc";
+        } else if (req.params.order == 2) {
+          this.querys =
+            "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.tipo_id, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and g.tipo_id ='" +
+            req.params.tipo +
+            "' order by g.fecha_factura desc";
+        } else {
+          this.querys =
+            "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.tipo_id, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and g.tipo_id ='" +
+            req.params.tipo +
+            "'";
+        }
+        connection.query(this.querys, function(error, result) {
+          if (error) console.log(error);
+          res.end(res.json(result));
+        });
+      });
+}

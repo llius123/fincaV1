@@ -51,6 +51,7 @@ actas.deleteActa(app);
 //GASTOS
 gastos.allGastos(app);
 gastos.newGasto(app)
+gastos.gastosByType(app)
 
 //INCIDENCIAS
 incidencias.allIncidencias(app);

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class SqlService {
   base = "http://localhost:3000";
 
-  constructor(private http: Http, private http2: HttpClient) {}
+  constructor(private http: Http, private http2: HttpClient) { }
 
   loggin(user: string, pass: string) {
     const url = this.base + "/loggin/" + user + "/" + pass;
@@ -119,13 +119,13 @@ export class SqlService {
   }
 
   //Edit acta
-  editActa(fecha: string, descripcion: string, textoCompleto: string, id: number){
+  editActa(fecha: string, descripcion: string, textoCompleto: string, id: number) {
     const url = this.base + "/editActa/" + fecha + "&" + descripcion + "&" + textoCompleto + "&" + id;
-    return this.http2.put(url,descripcion);
+    return this.http2.put(url, descripcion);
   }
 
   //Eliminar Acta
-  deleteActa(id: number){
+  deleteActa(id: number) {
     const url = this.base + "/deleteActa/" + id;
     return this.http2.delete(url);
   }
@@ -137,7 +137,7 @@ export class SqlService {
   }
 
   //Listo todos los gastos
-  allGastos(){
+  allGastos() {
     const url = `${this.base}/allGastos`;
     return this.http2.get(url);
   }
@@ -148,7 +148,7 @@ export class SqlService {
     return this.http2.post(url, recepcion);
   }
 
-  
+
 
   //Eliminar Gasto
   deleteGasto(id: number) {
@@ -157,13 +157,13 @@ export class SqlService {
   }
 
   //Edit gasto
-  editGasto(tipo_id: number, recepcion: string, factura: string, descripcion: string, id: number){
+  editGasto(tipo_id: number, recepcion: string, factura: string, descripcion: string, id: number) {
     const url = this.base + "/editGastos/" + tipo_id + '&' + recepcion + '&' + factura + '&' + descripcion + '&' + id;
     return this.http2.put(url, recepcion)
   }
 
   //Todas las incidencias
-  allIncidencias(){
+  allIncidencias() {
     const url = this.base + "/allIncidencia";
     return this.http2.get(url)
   }
@@ -179,8 +179,8 @@ export class SqlService {
   }
 
   //Delete incidencia
-  deleteIncidencia(id: number){
-    const url = this.base + "/deleteIncidencia/"+id;
+  deleteIncidencia(id: number) {
+    const url = this.base + "/deleteIncidencia/" + id;
     return this.http2.delete(url);
   }
 

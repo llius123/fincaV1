@@ -21,7 +21,6 @@ export class LoggedService {
 
 //Objeto donde guardo los datos del usuario loggeado
   saveData(data) {
-    console.log(data)
     this.logginData = {
       id: data.id,
       nombre: data.nombre,

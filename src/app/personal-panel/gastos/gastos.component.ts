@@ -42,12 +42,10 @@ export class GastosComponent implements OnInit, OnDestroy {
     this.subData = this.sqlService.allGastos().subscribe(data => {
       this.addDataToArray(data);
     });
-    // this.subTypes = this.sqlService.allTypesGastos().subscribe(data => {
-    //   this.addDataTipoGastosToArray(data);
-    // });
 
-    this.subTypes = this.sqlService.allTypesGastos().pipe(map((data) => {
+    this.subTypes = this.sqlService.allTypesGastos().pipe(map((data: JSON) => {
       this.arrayGastos.push(data)
+      console.log(this.arrayGastos)
     })).subscribe()
   }
 
@@ -57,6 +55,7 @@ export class GastosComponent implements OnInit, OnDestroy {
   }
 
   dataSearchForm(optionSelected: string, orderBy: number) {
+    console.log(optionSelected)
     if(optionSelected !== '0'){
       if(orderBy > 0){
         this.sqlService.gastosByType(optionSelected, orderBy).subscribe(

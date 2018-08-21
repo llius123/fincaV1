@@ -54,4 +54,6 @@ export class LogginComponent implements OnInit {
         this.loggValidator = true;
       }
     }
-)).subscribe();
+    )).subscribe();
+  }
+}
