@@ -16,7 +16,6 @@ faciles de usar y de jugar con ellos(3-8-2018)
 
 V-0.1.0
 
-+ Rehacer la api
 
 + Rehacer toda la aplicacion con la solicuon del map()
 
@@ -32,6 +31,8 @@ V-0.1.0
 + Añadir mas funcionalidades
 
 + Mejorar la base de datos
+
+* Rehacer la api(21-8-2018)
 
 * Mejorado el string que hace consulta a la base de datos, falta cambiar todo el codigo y reestructurar la api.
 const url = `${this.base}/newActa/${fecha}&${descripcion}&${textoCompleto}`;

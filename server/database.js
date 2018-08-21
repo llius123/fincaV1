@@ -40,7 +40,7 @@ user.allUsers(app);
 user.deleteUser(app);
 user.newUser(app);
 user.updateUser(app);
-user.test(app);
+
 //ACTAS
 actas.allActas(app);
 actas.getActa(app);

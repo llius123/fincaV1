@@ -20,16 +20,17 @@ export class LoggedService {
   constructor(private router: Router) {}
 
 //Objeto donde guardo los datos del usuario loggeado
-  saveData(data: JSON) {
+  saveData(data) {
+    console.log(data)
     this.logginData = {
-      id: data[0].id,
-      nombre: data[0].nombre,
-      tipo: data[0].tipo_id,
-      telefono: data[0].telefono,
-      puerta: data[0].puerta,
-      password: data[0].password,
-      usuario: data[0].usuario,
-      admin: data[0].tipo_id
+      id: data.id,
+      nombre: data.nombre,
+      tipo: data.tipo_id,
+      telefono: data.telefono,
+      puerta: data.puerta,
+      password: data.password,
+      usuario: data.usuario,
+      admin: data.tipo_id
     };
     this.isAdmin(this.logginData.admin);
   }

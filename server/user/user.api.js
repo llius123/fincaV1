@@ -69,15 +69,3 @@ exports.updateUser = function (app) {
     );
   });
 }
-exports.test = function (app) {
-  app.get("/test/:id&:name", function (req, res) {
-    connection.query(
-      "select * from usuario where id=? and nombre=?",
-      [req.params.id, req.params.name],
-      function (error, result) {
-        if (error) console.log(error);
-        res.end(res.json(result));
-      }
-    );
-  });
-}
