@@ -1,13 +1,11 @@
-const http = require("http");
 const express = require("express");
 const app = express();
-const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const connection = require("./server");
 const cors = require("cors");
 
 process.setMaxListeners(0);
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) throw err;
   console.log(
     "Conectado a Finca --> localhost:3000 || Cors enabled, mas info en README"
@@ -34,15 +32,15 @@ const server = app.listen(3000);
 //PAra activar el cors en toda la api
 app.use(cors());
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.send("Finca API");
 });
 
-app.get("/loggin/:usu/:pass", function(req, res) {
+app.get("/loggin/:usu/:pass", function (req, res) {
   connection.query(
     "select * from usuario where usuario=? and password=?",
     [req.params.usu, req.params.pass],
-    function(error, result) {
+    function (error, result) {
       if (error) console.log(error);
       res.end(res.json(result));
     }
@@ -51,7 +49,7 @@ app.get("/loggin/:usu/:pass", function(req, res) {
 
 app.get("/allUsers", function(req, res) {
   connection.query(
-    "select u.id,u.nombre,u.telefono,u.puerta,t.titulo,u.usuario,u.password from usuario u,tipousuario t where t.id = u.tipo_id order by u.id",
+    "select u.id,u.nombre,u.telefono,u.puerta,t.titulo,u.usuario,u.password, u.tipo_id from usuario u,tipousuario t where t.id = u.tipo_id order by u.id",
     function(error, result) {
       if (error) console.log(error);
       res.end(res.json(result));

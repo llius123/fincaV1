@@ -1,4 +1,4 @@
-<div class="list-group" id="divList">
+<div class="list-group" id="divList" style="padding-left: 5%;padding-right: 5%;">
   <a id="aGeneral" data-toggle="modal" data-target="#myModal" (click)="dataModal(index)" class="list-group-item list-group-item-action"
     *ngFor="let index of arrayAllData">
     <div class="col-xs-3" id="div1">
@@ -14,7 +14,7 @@
 </div>
 <!-- The Modal -->
 <div class="modal fade" id="myModal">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
 
       <!-- Modal Header -->
@@ -30,22 +30,22 @@
         <h4>
           Fecha:
         </h4>
-        {{ fecha }}
+        · {{ fecha }}
         <br />
-        <h4>
+        <h4 style="margin-top: 5%;">
           Descripcion:
         </h4>
-        {{ desc }}
+        · {{ desc }}
         <br />
-        <h4>
+        <h4 style="margin-top: 5%;">
           Acta completa:
         </h4>
-        {{ texto }}
+        · {{ texto }}
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer" style="background-color: lightblue">
-        <button type="button" class="btn btn-outline-danger hvr-grow" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-danger hvr-grow" data-dismiss="modal">Cerrar</button>
       </div>
 
     </div>

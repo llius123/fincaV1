@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row" style="margin-top: 2%;">
     <div class="col xs-9" id="titulo">
+      <i class="fas {{icon()}}">
+      </i>
       {{ titulo }}
     </div>
     <div class="col-xs-3" style="padding-right: 25%;">
@@ -22,12 +24,12 @@
         </div>
         <div class="form-group">
           <label>Nombre:</label>
-          <input formControlName="nombre" type="text" class="form-control">
+          <input formControlName="nombre" type="text" class="form-control" >
           <div *ngIf="!dataUser.get('nombre').valid" style="color: red; margin-top: 5px;font-weight: bold">Nombre no puede estar en blanco</div>
         </div>
         <div class="form-group">
           <label>Telefono</label>
-          <input formControlName="telefono" type="text" class="form-control">
+          <input formControlName="telefono" type="text" class="form-control" (click)="validator(userTelefono)" #userTelefono>
           <div *ngIf="!dataUser.get('telefono').valid" style="color: red; margin-top: 5px;font-weight: bold">Telefono no puede estar en blanco</div>
         </div>
         <div class="form-group">
@@ -53,9 +55,12 @@
           <div *ngIf="!dataUser.get('password').valid" password style="color: red; margin-top: 5px;font-weight: bold">Password no puede estar en blanco</div>
         </div>
         <div>
-          <button [style.cursor]="!dataUser.valid ? 'not-allowed' : null " [disabled]="dataUser.valid == false ? true : false" type="button" class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
-          <button [style.cursor]="!dataUser.valid ? 'not-allowed' : null " [disabled]="dataUser.valid == false ? true : false" style="margin-left: 3%" type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
-          <button [style.cursor]="!dataUser.valid ? 'not-allowed' : null " [disabled]="dataUser.valid == false ? true : false" style="margin-left: 3%" type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
+          <button [style.cursor]="!dataUser.valid ? 'not-allowed' : null " [disabled]="dataUser.valid == false ? true : false" type="button"
+            class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
+          <button [style.cursor]="!dataUser.valid ? 'not-allowed' : null " [disabled]="dataUser.valid == false ? true : false" style="margin-left: 3%"
+            type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
+          <button [style.cursor]="!dataUser.valid ? 'not-allowed' : null " [disabled]="dataUser.valid == false ? true : false" style="margin-left: 3%"
+            type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
           <button style="float: right" type="button" class="btn btn-outline-danger hvr-grow" (click)="cancellButton()">Cancelar</button>
         </div>
       </form>
@@ -99,9 +104,12 @@
           <textarea formControlName="textocompleto" type="text" class="form-control" rows="3"></textarea>
           <div *ngIf="!dataActa.get('textocompleto').valid" style="color: red; margin-top: 5px;font-weight: bold">Descripcion no puede estar en blanco</div>
         </div>
-        <button [style.cursor]="!dataActa.valid ? 'not-allowed' : null" [disabled]="dataActa.valid == false ? true : false" type="button" class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
-        <button [style.cursor]="!dataActa.valid ? 'not-allowed' : null" [disabled]="dataActa.valid == false ? true : false" style="margin-left: 3%" type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
-        <button [style.cursor]="!dataActa.valid ? 'not-allowed' : null" [disabled]="dataActa.valid == false ? true : false" style="margin-left: 3%" type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
+        <button [style.cursor]="!dataActa.valid ? 'not-allowed' : null" [disabled]="dataActa.valid == false ? true : false" type="button"
+          class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
+        <button [style.cursor]="!dataActa.valid ? 'not-allowed' : null" [disabled]="dataActa.valid == false ? true : false" style="margin-left: 3%"
+          type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
+        <button [style.cursor]="!dataActa.valid ? 'not-allowed' : null" [disabled]="dataActa.valid == false ? true : false" style="margin-left: 3%"
+          type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
         <button style="float: right" type="button" class="btn btn-outline-danger hvr-grow" (click)="cancellButton()">Cancelar</button>
       </form>
     </div>
@@ -149,9 +157,12 @@
           <input formControlName="descripcion" type="text" class="form-control">
           <div *ngIf="!dataGastos.get('descripcion').valid" style="color: red; margin-top: 5px;font-weight: bold">Descripcion no puede estar en blanco</div>
         </div>
-        <button [style.cursor]="!dataGastos.valid ? 'not-allowed' : null" [disabled]="dataGastos.valid == false ? true : false" type="button" class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
-        <button [style.cursor]="!dataGastos.valid ? 'not-allowed' : null" [disabled]="dataGastos.valid == false ? true : false" style="margin-left: 3%" type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
-        <button [style.cursor]="!dataGastos.valid ? 'not-allowed' : null" [disabled]="dataGastos.valid == false ? true : false" style="margin-left: 3%" type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
+        <button [style.cursor]="!dataGastos.valid ? 'not-allowed' : null" [disabled]="dataGastos.valid == false ? true : false" type="button"
+          class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
+        <button [style.cursor]="!dataGastos.valid ? 'not-allowed' : null" [disabled]="dataGastos.valid == false ? true : false" style="margin-left: 3%"
+          type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
+        <button [style.cursor]="!dataGastos.valid ? 'not-allowed' : null" [disabled]="dataGastos.valid == false ? true : false" style="margin-left: 3%"
+          type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
         <button style="float: right" type="button" class="btn btn-outline-danger hvr-grow" (click)="cancellButton()">Cancelar</button>
       </form>
     </div>
@@ -188,8 +199,10 @@
           <div *ngIf="!dataIncidencia.get('descripcion').valid" style="color: red; margin-top: 5px;font-weight: bold">Descripcion no puede estar en blanco</div>
         </div>
         <button *ngIf="buttonVisible()" type="button" class="btn btn-outline-primary hvr-grow" (click)="addNewUser()">Crear</button>
-        <button [style.cursor]="!dataIncidencia.valid ? 'not-allowed' : null" [disabled]="dataIncidencia.valid == false ? true : false" style="margin-left: 3%" type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
-        <button [style.cursor]="!dataIncidencia.valid ? 'not-allowed' : null" [disabled]="dataIncidencia.valid == false ? true : false" style="margin-left: 3%" type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
+        <button [style.cursor]="!dataIncidencia.valid ? 'not-allowed' : null" [disabled]="dataIncidencia.valid == false ? true : false"
+          style="margin-left: 3%" type="button" class="btn btn-outline-warning hvr-grow" (click)="editUserDatabase()">Editar</button>
+        <button [style.cursor]="!dataIncidencia.valid ? 'not-allowed' : null" [disabled]="dataIncidencia.valid == false ? true : false"
+          style="margin-left: 3%" type="button" class="btn btn-outline-secondary hvr-grow" (click)="deleteUserDatabase()">Eliminar</button>
         <button style="float: right" type="button" class="btn btn-outline-danger hvr-grow" (click)="cancellButton()">Cancelar</button>
       </form>
     </div>

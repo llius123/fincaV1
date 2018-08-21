@@ -2,7 +2,7 @@
   <form [formGroup]="dataUser" style="width: 30%;margin-left: 30%;">
     <div class="form-group">
       <label>Nombre:</label>
-      <input formControlName="nombre" type="text" class="form-control" #inputNombre >
+      <input formControlName="nombre" type="text" class="form-control" #inputNombre>
       <div *ngIf="dataUser.get('nombre').errors?.required && modeEditable !== false" style="color: red; margin-top: 5px;font-weight: bold">Nombre no puede estar en blanco</div>
       <div *ngIf="dataUser.get('nombre').errors?.pattern && modeEditable !== false" style="color: red; margin-top: 5px;font-weight: bold">Nombre no puede contener caracteres numericos</div>
     </div>
@@ -16,7 +16,6 @@
       <label>Puerta</label>
       <input formControlName="puerta" type="text" class="form-control" #inputPuerta>
       <div *ngIf="dataUser.get('puerta').errors?.required && modeEditable !== false" style="color: red; margin-top: 5px;font-weight: bold">Puerta no puede estar en blanco</div>
-      <div *ngIf="dataUser.get('puerta').errors?.maxlength && modeEditable !== false" style="color: red; margin-top: 5px;font-weight: bold">Puerta no puede tener mas de 2 cifras</div>
     </div>
     <div class="form-group">
       <label>Usuario</label>
@@ -29,7 +28,8 @@
       <div *ngIf="!dataUser.get('password').valid && modeEditable !== false" password style="color: red; margin-top: 5px;font-weight: bold">Password no puede estar en blanco</div>
     </div>
     <div>
-      <button type="button" class="btn btn-outline-primary hvr-grow" *ngIf="modeEditable" (click)="updateData()">Guardar</button>
+      <button [style.cursor]="!dataUser.valid ? 'not-allowed' : null " [disabled]="dataUser.valid == false ? true : false" type="button"
+        class="btn btn-outline-primary hvr-grow" *ngIf="modeEditable" (click)="updateData()">Guardar</button>
       <button style="float: right" type="button" class="btn btn-danger hvr-grow" *ngIf="modeEditable" (click)="cancellButton()">Cancelar</button>
       <button style="margin-left: 30%;" type="button" class="btn btn-primary hvr-grow" *ngIf="!modeEditable" (click)="editable()">Editar Datos</button>
     </div>

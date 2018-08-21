@@ -41,8 +41,7 @@ export class UsersComponent implements OnInit {
       ]),
       puerta: new FormControl(
         { value: null, disabled: this.readOnly },
-        [Validators.required,
-        Validators.maxLength(2)]
+        [Validators.required]
       ),
       usuario: new FormControl(
         { value: null, disabled: this.readOnly },

@@ -1,9 +1,8 @@
-import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http, Response } from "@angular/http";
 import { HttpClient } from '@angular/common/http';
+import { map } from "rxjs/operators";
 import { Observable } from 'rxjs';
-import { Actas } from './interfaces.services';
 
 @Injectable()
 export class SqlService {
@@ -115,14 +114,13 @@ export class SqlService {
 
   //Nueva acta
   newActa(fecha: string, descripcion: string, textoCompleto: string) {
-    const url = this.base + "/newActa/" + fecha + "&" + descripcion + "&" + textoCompleto;
+    const url = `${this.base}/newActa/${fecha}&${descripcion}&${textoCompleto}`;
     return this.http2.post(url, descripcion);
   }
 
   //Edit acta
   editActa(fecha: string, descripcion: string, textoCompleto: string, id: number){
     const url = this.base + "/editActa/" + fecha + "&" + descripcion + "&" + textoCompleto + "&" + id;
-    console.log(url);
     return this.http2.put(url,descripcion);
   }
 
@@ -139,8 +137,8 @@ export class SqlService {
   }
 
   //Listo todos los gastos
-  allGastos() {
-    const url = this.base + "/allGastos";
+  allGastos(){
+    const url = `${this.base}/allGastos`;
     return this.http2.get(url);
   }
 

@@ -54,12 +54,29 @@ export class NewActionComponent implements OnInit, OnDestroy {
   allTipeUsers = [];
   allTipeGastos = [];
 
+  validatorRes: boolean = false;
   ngOnInit() {
     this.getUrl();
     this.getAllTipes();
   }
   ngOnDestroy() {
     this.routeSubscribe.unsubscribe();
+  }
+
+  test(data: any){
+    console.log(data)
+  }
+  validator(data: any){
+    console.log(data)
+    if(data.value != null){
+      this.validatorRes = true;
+    }
+  }
+
+  getUrl() {
+    this.routeSubscribe = this.router.queryParams.subscribe(params => {
+      this.action(params.action);
+    });
   }
   getAllTipes() {
     switch (this.actionType) {
@@ -90,10 +107,21 @@ export class NewActionComponent implements OnInit, OnDestroy {
     }
   }
 
-  getUrl() {
-    this.routeSubscribe = this.router.queryParams.subscribe(params => {
-      this.action(params.action);
-    });
+  icon() {
+    switch (this.actionType) {
+      case this.user:
+        return "fa-users";
+        
+      case this.acta:
+        return "fa-book";
+        
+      case this.gasto:
+        return "fa-dollar-sign";
+        
+      case this.incidencia:
+        return "fa-exclamation";
+        
+    }
   }
 
   action(action: string) {
@@ -189,7 +217,8 @@ export class NewActionComponent implements OnInit, OnDestroy {
             q.puerta,
             q.titulo,
             q.usuario,
-            q.password
+            q.password,
+            q.tipo_id
           ]);
         }
         break;
@@ -212,7 +241,8 @@ export class NewActionComponent implements OnInit, OnDestroy {
             q.tipo,
             this.genericClass.transformDate(q.fecha_recepcion),
             this.genericClass.transformDate(q.fecha_factura),
-            q.descripcion
+            q.descripcion,
+            q.tipo_id
           ]);
         }
         break;
@@ -224,7 +254,7 @@ export class NewActionComponent implements OnInit, OnDestroy {
         break;
     }
   }
-  
+
   editUser(data: any) {
     switch (this.actionType) {
       case this.user:
@@ -234,7 +264,7 @@ export class NewActionComponent implements OnInit, OnDestroy {
           nombre: data[1],
           telefono: data[2],
           puerta: data[3],
-          tipo: data[4],
+          tipo: data[7],
           usuario: data[5],
           password: data[6]
         });
@@ -252,7 +282,7 @@ export class NewActionComponent implements OnInit, OnDestroy {
         this.editUserValidator = true;
         this.dataGastos.patchValue({
           id: data[0],
-          tipo: data[1],
+          tipo: data[5],
           recepcion: data[2],
           factura: data[3],
           descripcion: data[4]

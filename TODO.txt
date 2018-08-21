@@ -14,9 +14,13 @@ Usar para los http request el private http2: HttpClient porque los json que devu
 faciles de usar y de jugar con ellos(3-8-2018)
 --------------------------------------------------------------------------------------------------------
 
-V0.1.0
+V-0.1.0
 
-+ Validaciones correctas, que no te deje hacer nada a menos que este bien escrito el texto en los inputs
++ Rehacer la api
+
++ Rehacer toda la aplicacion con la solicuon del map()
+
++ Instalado Angular material, aprender a usarlo
 
 + Mejorar el css
 
@@ -28,6 +32,22 @@ V0.1.0
 + Añadir mas funcionalidades
 
 + Mejorar la base de datos
+
+* Mejorado el string que hace consulta a la base de datos, falta cambiar todo el codigo y reestructurar la api.
+const url = `${this.base}/newActa/${fecha}&${descripcion}&${textoCompleto}`;
+(20-8-2018)
+
+* Arreglado el problema de cuando hacia una consulta a la base de datos el resultado tenia que llamar 
+a otro metodo para guardarlo en un array.
+Falta rehacer toda la aplicacion de esta forma.
+Solucion:
+    this.subTypes = this.sqlService.allTypesGastos().pipe(map((data) => {
+      this.arrayGastos.push(data)
+    })).subscribe()
+(20-8-2018)
+
+* Validaciones correctas, que no te deje hacer nada a menos que este bien escrito el texto en los inputs
+    -Los botones no se desbloquean a menos que todos los inputs esten bien escritos (11-8-2018)
 
 --------------------------------------------------------------------------------------------------------
 

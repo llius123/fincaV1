@@ -7,6 +7,7 @@ import { Subscription } from "rxjs";
 import { Response } from "@angular/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GenericClass } from "../extra/generic.services";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-gastos",
@@ -28,6 +29,8 @@ export class GastosComponent implements OnInit, OnDestroy {
 
   searchDisabled = false;
 
+  tipo: {id:number, tipo:string};
+
   constructor(
     private sqlService: SqlService,
     private router: ActivatedRoute,
@@ -39,9 +42,13 @@ export class GastosComponent implements OnInit, OnDestroy {
     this.subData = this.sqlService.allGastos().subscribe(data => {
       this.addDataToArray(data);
     });
-    this.subTypes = this.sqlService.allTypesGastos().subscribe(data => {
-      this.addDataTipoGastosToArray(data);
-    });
+    // this.subTypes = this.sqlService.allTypesGastos().subscribe(data => {
+    //   this.addDataTipoGastosToArray(data);
+    // });
+
+    this.subTypes = this.sqlService.allTypesGastos().pipe(map((data) => {
+      this.arrayGastos.push(data)
+    })).subscribe()
   }
 
   ngOnDestroy() {
@@ -71,7 +78,7 @@ export class GastosComponent implements OnInit, OnDestroy {
 
   addDataTipoGastosToArray(data: any) {
     for (let q of data) {
-      this.arrayGastos.push([q.id, q.tipo]);
+      this.arrayGastos.push([q.id,q.tipo]);
     }
   }
   addDataToArray(data: any) {

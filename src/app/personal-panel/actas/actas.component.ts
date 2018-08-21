@@ -1,7 +1,9 @@
+import { Response } from '@angular/http';
 import { Subscription } from 'rxjs';
 import { SqlService } from "./../extra/sql.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { GenericClass } from '../extra/generic.services';
+import { map } from  'rxjs/operators';
 
 @Component({
   selector: "app-actas",
@@ -28,20 +30,16 @@ export class ActasComponent implements OnInit,OnDestroy {
   }
 
   loadAllActas() {
-    this.allActas = this.sqlService.allActas().subscribe(data => {
-      this.addDataToArray(data);
-    });
-  }
-
-  addDataToArray(data: any){
-    for (let q of data) {
-      this.arrayAllData.push([
-        q.id,
-        this.transformDate(q.fecha),
-        q.descripcion,
-        q.textoCompleto
-      ]);
-    }
+    this.allActas = this.sqlService.allActas().pipe(map((data: any) => {
+      for (let q of data) {
+        this.arrayAllData.push([
+          q.id,
+          this.genericClass.transformDate(q.fecha),
+          q.descripcion,
+          q.textoCompleto
+        ]);
+      }
+    })).subscribe();
   }
 
   dataModal(data: any){
@@ -50,7 +48,4 @@ export class ActasComponent implements OnInit,OnDestroy {
     this.texto = data[3];
   }
   
-  transformDate(data: any) {
-    return this.genericClass.transformDate(data);
-  }
 }

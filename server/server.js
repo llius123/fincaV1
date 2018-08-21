@@ -1,8 +1,10 @@
-var mysql = require("mysql");
-var con = mysql.createConnection({
+const mysql = require("mysql");
+
+var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "mellamojesus1361",
   database: "finca"
 });
-module.exports = con;
+
+module.exports = connection;

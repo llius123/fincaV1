@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http"
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
@@ -39,7 +40,8 @@ import { NewActionComponent } from './personal-panel/admin-panel/new-action/new-
     HttpModule,
     HttpClientModule,
     AppRoute,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [SqlService, LoggedService, GenericClass],
   bootstrap: [AppComponent]
