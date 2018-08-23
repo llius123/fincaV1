@@ -1,5 +1,8 @@
-export class Actas{
+export interface User{
     id: number;
-    fecha: Date;
-    descripcion: string;
+    nombre: string;
+    telefono: string;
+    puerta: string;
+    usuario: string;
+    password: string;
 }

@@ -3,7 +3,6 @@ export class User {
   public name: string;
   public phone: number;
   public door: number;
-  public type_id: number;
   public user: string;
   public pass: string
 
@@ -12,7 +11,6 @@ export class User {
     name: string,
     phone: number,
     door: number,
-    type_id: number,
     user: string,
     pass: string
   ) {
@@ -20,7 +18,6 @@ export class User {
     this.name = name;
     this.phone = phone;
     this.door = door;
-    this.type_id = type_id;
     this.user = user;
     this.pass = pass;
   }

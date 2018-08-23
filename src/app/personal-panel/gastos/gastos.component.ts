@@ -45,7 +45,6 @@ export class GastosComponent implements OnInit, OnDestroy {
 
     this.subTypes = this.sqlService.allTypesGastos().pipe(map((data: JSON) => {
       this.arrayGastos.push(data)
-      console.log(this.arrayGastos)
     })).subscribe()
   }
 
@@ -55,7 +54,6 @@ export class GastosComponent implements OnInit, OnDestroy {
   }
 
   dataSearchForm(optionSelected: string, orderBy: number) {
-    console.log(optionSelected)
     if(optionSelected !== '0'){
       if(orderBy > 0){
         this.sqlService.gastosByType(optionSelected, orderBy).subscribe(

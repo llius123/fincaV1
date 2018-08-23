@@ -72,7 +72,6 @@ exports.deleteGasto = function (app) {
 exports.gastosByType = function (app) {
     app.get("/gastosByType/:tipo/:order", function(req, res) {
         const querys = "";
-        console.log(req.params.order);
         if (req.params.order == 1) {
           this.querys =
             "select g.fecha_recepcion, g.fecha_factura, g.descripcion, g.tipo_id, t.tipo from gastos g, tipogastos t where g.tipo_id = t.id and g.tipo_id ='" +

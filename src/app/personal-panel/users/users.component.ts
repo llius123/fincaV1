@@ -7,6 +7,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DISABLED } from "@angular/forms/src/model";
+//import { User } from '../extra/interfaces.services'
+import { User } from "../extra/user.model";
 
 @Component({
   selector: "app-users",
@@ -30,6 +32,24 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.sqlServices.test().subscribe((data: any) => {
+      //let user: User[] = [];
+      let user: User[];
+      console.log(user)
+      for(let q of data){
+        user.push({
+          id: q.id,
+          name: q.nombre,
+          phone: q.telefono,
+          door: q.puerta,
+          user: q.usuario,
+          pass: q.password
+        })
+      }
+      console.log(user)
+    })
+
+
     this.dataUser = new FormGroup({
       nombre: new FormControl({ value: null, disabled: this.readOnly }, [
         Validators.required,
