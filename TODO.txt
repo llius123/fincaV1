@@ -26,7 +26,8 @@ V-0.1.0
 + Mejorar el codigo
     + Usar observers
     + Mirar lo de .subscribe porque me parece super ineficiente
-    + Mejorar los put/post/delete y buscar info por lo de http2(HttpClient)
+    * Mejorar los put/post/delete y buscar info por lo de http2(HttpClient)(22-8-2018)
+        Mas info: http://blog.enriqueoriol.com/2017/11/httpclient-vs-http-angular.html
 
 + Añadir mas funcionalidades
 
